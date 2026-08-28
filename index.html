@@ -101,7 +101,7 @@
   pre#song-body{
     margin:0; padding:18px 16px calc(40px + var(--safe-bottom));
     font-family:"SF Mono", "Roboto Mono", Menlo, Consolas, "Courier New", monospace;
-    font-size:15px; line-height:1.55; white-space:pre; overflow-x:auto;
+    font-size:15px; line-height:1.55; white-space:pre-wrap; word-break:break-word; overflow-x:hidden;
     tab-size:4; -moz-tab-size:4;
   }
   /* chord-looking tokens (heuristic highlight) are wrapped server-side via span.chordline is not used;
