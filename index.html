@@ -7,11 +7,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Śpiewnik">
-<title>Śpiewnik</title>
+<meta name="apple-mobile-web-app-title" content="AdoNaj">
+<title>Śpiewnik AdoNaj</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-190.png">
+<link rel="apple-touch-icon" href="icons/icon-190.png">
 <style>
   :root{
     --bg:#0f172a; --bg2:#1e293b; --card:#1e293b; --card2:#243247;
@@ -115,7 +115,7 @@
 
   <div id="list-view">
     <header>
-      <h1><span class="dot">♪</span> Śpiewnik</h1>
+      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span> Śpiewnik AdoNaj</h1>
       <div class="search-wrap">
         <input id="search" type="text" inputmode="search" placeholder="Szukaj tytułu pieśni…" autocomplete="off">
         <button class="clear" id="clearBtn" aria-label="Wyczyść">×</button>
@@ -141,9 +141,31 @@
 
 </div>
 
+<script>
 (function(){
   const SONGS = [
-  { title: "Albowiem tak Bóg umiłował świat",
+  { title: "Adorujmy Najwyższego - AdoNaj",
+    body: `C G a F
+C G C
+
+C a
+Adorujmy Najwyższego
+F G C
+Boga Stwórcę świata wspaniałego
+C a
+Adorujmy Najwyższego
+F G C
+Jego Syna Zbawcę Jedynego
+C a
+Adorujmy Najwyższego
+F G C
+Ducha Ognia Obrońcę naszego
+C a
+Adorujmy Najwyższego
+F G C
+Świętą Trójcę Boga Wszechmocnego
+` },
+	   { title: "Albowiem tak Bóg umiłował świat",
     body: `e        D          C     h         e
 Albowiem tak Bóg umiłował świat, że Syna Jednorodzonego dał,
 e        D          C     D         e
@@ -151,7 +173,8 @@ By każdy, kto w Niego wierzy, nie zginął, lecz życie wieczne miał.
 D           G      D        e       C     H7
 Lecz by mógł żyć na wieki, by mógł żyć na wieki. /2x` },
   { title: "Anima Christi",
-    body: `h     G        A         h
+    body: `Ref.
+h     G        A         h
 Anima Christi, sanctifica me
 e      h       Fis
 Corpus Christi, salva me
@@ -169,7 +192,15 @@ h     G       A  G
 Intra vulnera tu-ua
 e                  h   Fis   h  Fis h
 Absconde, absconde me
-Anima Christi…
+Ref.
+h     G        A         h
+Anima Christi, sanctifica me
+e      h       Fis
+Corpus Christi, salva me
+h       G       A    G
+Sanguis Christi, inebria me
+e            h      Fis   h  Fis h
+Aqua lateris Christi, lava me
 
 [2]
 h            G           A   h
@@ -180,7 +211,15 @@ h       G       A  G
 In hora mortis meae
 e                 h   Fis   h  Fis h
 Voca me, voca me
-Anima Christi…
+Ref.
+h     G        A         h
+Anima Christi, sanctifica me
+e      h       Fis
+Corpus Christi, salva me
+h       G       A    G
+Sanguis Christi, inebria me
+e            h      Fis   h  Fis h
+Aqua lateris Christi, lava me
 
 [3]
 h          G        A      h
@@ -191,7 +230,15 @@ h     G      A  G
 Per infinita saecula
 e         h   Fis   h  Fis h
 Saeculorum, Amen.
-Anima Christi…` },
+Ref.
+h     G        A         h
+Anima Christi, sanctifica me
+e      h       Fis
+Corpus Christi, salva me
+h       G       A    G
+Sanguis Christi, inebria me
+e            h      Fis   h  Fis h
+Aqua lateris Christi, lava me` },
   { title: "Baranek i Lew – AdoNaj",
     body: `cis      A
 Pan mój
@@ -208,25 +255,174 @@ Jezu zwyciężasz, gdy przed jadem Węża jak Lew dziś osłaniasz mnie
 cis             A                 E           Hsus2
 Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł. /2x
 
-cis     
+cis      A
 Pan mój
-A
+E         Hsus2
 Jedyny Pan mój
-E
+cis      A
 Baranek i Lew
-Hsus2
+E           Hsus2
 Zgładził mój grzech /2x
 
 Ref.
-cis             A                  
-Jezu zwyciężasz, gdy przed jadem Węża 
- E             Hsus2
-jak Lew dziś osłaniasz mnie
-cis             A                
-Będę Cię sławił za to, żeś mnie zbawił 
- E           Hsus2
-gdyś jako Baranek szedł. /2x` },
+cis             A                   E             Hsus2
+Jezu zwyciężasz, gdy przed jadem Węża jak Lew dziś osłaniasz mnie
+cis             A                 E           Hsus2
+Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł. /2x` },
+  { title: "Będzie to piękne spotkanie - Mocni w Duchu",
+    body: `G       G fis
+Nie mamy już miejsca stałego
+  G e     C
+Wśród wszystkich zakątków tej ziemi.
+  G       G fis
+Szukamy wciąż miejsca stałego,
+  G e     C
+Wciąż do nowego dążymy.
 
+  G          G fis
+Ale przyjdzie taki dzień,
+  G e               C
+Gdy zapuka do ciebie Ktoś,
+  G         G fis
+Wówczas powie ci: Odnalazłeś swój dom,
+  G e        C
+Dom spotkania Miłości.
+
+Ref.
+     G        G fis
+     Będzie to piękne spotkanie,
+     G e                 C
+     Spotkanie, którego nie zna nikt.
+     G        G fis
+     Będzie to przebywanie
+     G e                 C
+     Na zawsze i po wieczne dni.
+
+  G       G fis
+Jasność stanie przed tobą
+  G e            C
+I ciemność na zawsze przeminie.
+  G        G fis
+Pan wyjdzie na to spotkanie
+  G e                   C
+W jedynej dla ciebie godzinie.
+
+Ref.
+     G        G fis
+ Będzie to piękne spotkanie,
+     G e                 C
+     Spotkanie, którego nie zna nikt.
+     G        G fis
+     Będzie to przebywanie
+     G e                 C
+     Na zawsze i po wieczne dni.` },
+  { title: "Błogosław duszo moja Pana",
+    body: `Ref.
+E                  cis
+Błogosław duszo moja Pana,
+     D
+     Wszystko co we mnie,
+     A              H
+     Jego Najświętsze Imię!
+     E                  cis
+     Błogosław duszo moja Pana,
+     D
+     Jego dobroci,
+     A         H
+     Nigdy nie zapominaj!
+
+  A                        fis
+1.On odpuszcza wszystkie Twoje grzechy,
+   E
+  (Leczy wszystkie twoje choroby!)
+  A                   fis
+  Okazuje Swoje Miłosierdzie,
+   E
+  (On ratuje Ciebie od zguby!)
+  A                         fis
+  On napełnia twoje życie dobrem,
+   E
+  (Aż odnowi się Twoja młodość jak u orła!)
+  A
+  Nie odpłaca według grzechów,
+  fis
+  Nie chce wiecznie gniewać się,
+  A
+  On pamięta żeśmy prochem,
+  fis          H
+  On najlepiej wie!
+
+Ref.
+E                  cis
+Błogosław duszo moja Pana,
+     D
+     Wszystko co we mnie,
+     A              H
+     Jego Najświętsze Imię!
+     E                  cis
+     Błogosław duszo moja Pana,
+     D
+     Jego dobroci,
+     A         H
+     Nigdy nie zapominaj!
+
+  A                        fis
+2.Tak jak ojciec nad swoimi dziećmi,
+   E
+  (Pan lituje się nad pokornym!)
+  A                      fis
+  On oddala od nas nasze winy,
+   E
+  (Jak daleko wschód od zachodu!)
+  A                          fis
+  Jak wysoko niebo jest nad ziemią,
+   E
+  (Tak jest wielka dobroć dla ludzi)
+  A
+  Dni człowieka są jak trawa,
+  fis
+  Kwitnie on jak polny kwiat,
+  A
+  Kiedy mocniej wiatr zawieje,
+  fis          H
+  Znika po nim ślad!
+
+Ref.
+E                  cis
+Błogosław duszo moja Pana,
+     D
+     Wszystko co we mnie,
+     A              H
+     Jego Najświętsze Imię!
+     E                  cis
+     Błogosław duszo moja Pana,
+     D
+     Jego dobroci,
+     A         H
+     Nigdy nie zapominaj!
+
+E
+Błogosławcie Pana – wszyscy aniołowie,
+cis
+Błogosławcie Pana – wszyscy Jego ludzie,
+D
+Błogosławcie Pana – wszystkie Jego dzieła,
+A             H
+Błogosławcie Go!
+
+Ref.
+E                  cis
+Błogosław duszo moja Pana,
+     D
+     Wszystko co we mnie,
+     A              H
+     Jego Najświętsze Imię!
+     E                  cis
+     Błogosław duszo moja Pana,
+     D
+     Jego dobroci,
+     A         H
+     Nigdy nie zapominaj!` },
   { title: "Błogosławieni Miłosierni",
     body: `cis         A               E
 Wznoszę swe oczy ku górom, skąd
@@ -539,13 +735,12 @@ h
 Wyznaję to
 G          A     D
 Wierzę w imię Jezus` },
-  { title: "Daj mi usłyszeć Twój głos",
+  { title: "Daj mi usłyszeć Twój głos - Mocni w Duchu",
     body: `1. Daj mi usłyszeć Twój głos, rozpoznać go.
 Daj mi wybierać Twe słowa pośród tysiąca słów.
 Daj mi zobaczyć Twą twarz, zatrzymać wzrok.
 Pokój znajduję w Tobie, gdy widzę Ciebie blisko.
-Ref. 
-Jezus... x4
+Ref. Jezus... x4
 2. Daj mi łaskę Twą, bym nie bał się.
 Daj mi uwierzyć, że mogę czynić cuda w Twoje Imię.
 Coda: Postaw mnie mocno na skale.
@@ -578,8 +773,7 @@ e C D e
 1.Duchu Święty rozpalaj serce me   // x 4
 
 C D e
-Ref. 
-Chcemy Cię uwielbiać, chwalić Ciebie Panie
+Ref. Chcemy Cię uwielbiać, chwalić Ciebie Panie
 Bo Ty jesteś światłem co nigdy nie gaśnie!
 
 2. Duchu Święty oświecaj serce me // x 4
@@ -598,10 +792,9 @@ G D
 Nadzieja zagości,
 G D A
 Niech miłość zagości w nas` },
-  { title: "Duszo ma, Pana chwal",
+  { title: "Duszo ma, Pana chwal - Matt Redman",
     body: `G D A h
-Ref. 
-Duszo ma, Pana chwal, oddaj Bogu cześć,
+Ref. Duszo ma, Pana chwal, oddaj Bogu cześć,
 G D A
 Świętemu śpiewaj pieśń.
 G h G A h
@@ -618,14 +811,7 @@ Cokolwiek jest już za mną i to wszystko co przede mną
 G D A D
 Wiem, będę śpiewać, gdy nadejdzie zmrok.
 
-	Ref. 
-Duszo ma, Pana chwal, oddaj Bogu cześć,
-G D A
-Świętemu śpiewaj pieśń.
-G h G A h
-Z mocą wywyższaj go, duszo ma,
-G A D
-Uwielbiam Boże, Cię.
+	Ref. Duszo ma..
 
 G D A h
 2.Bogaty w miłość gniew oddalasz Panie
@@ -636,14 +822,7 @@ Ze względu na Twą dobroć będę śpiewać Tobie pieśni
 G D A D
 Wiele powodów by uwielbiać Cię
 
-	Ref. 
-Duszo ma, Pana chwal, oddaj Bogu cześć,
-G D A
-Świętemu śpiewaj pieśń.
-G h G A h
-Z mocą wywyższaj go, duszo ma,
-G A D
-Uwielbiam Boże, Cię.
+	Ref. Duszo ma...
 
 G D A h
 3.Przyjdzie dzień gdy bez sił zostanę
@@ -653,14 +832,7 @@ G D A h
 Dusza ma będzie już na zawsze Cię uwielbiać
 G D A D
 W wieczności z Tobą piękna zabrzmi pieśń
-	Ref. 
-Duszo ma, Pana chwal, oddaj Bogu cześć,
-G D A
-Świętemu śpiewaj pieśń.
-G h G A h
-Z mocą wywyższaj go, duszo ma,
-G A D
-Uwielbiam Boże, Cię.` },
+	Ref. Duszo ma…` },
   { title: "Dzięki za Twój Krzyż",
     body: `D A h
 Dzięki za Twój Krzyż,
@@ -689,8 +861,7 @@ g A7 d
 Zmiłuj się nad nami!
 
 d A d F C F F7
-Ref. 
-Tobą mury rozwalać, Tobą się osłonić,
+Ref. Tobą mury rozwalać, Tobą się osłonić,
 B F C B F C A7||A7 d
 Tobie się ufnym sercem z miłością pokłonić. /2x
 
@@ -718,7 +889,7 @@ d    A       d        F    C     F   F7
 Tobą mury rozwalać, Tobą się osłonić,
 B        F     C     B        F     C  A7  d
 Tobie się ufnym sercem z miłością pokłonić. /2x` },
-  { title: "Jakie piękne jest Imię Twe",
+  { title: "Jakie piękne jest Imię Twe - Hillsong Worship",
     body: `Zwrotka 1
 D 
 Ty na początku byłeś Słowem 
@@ -789,6 +960,74 @@ D A
 Jak potężne jest Imię Twe, nic z nim nie równa się
 h A G
 Jak potężne jest Imię Twe, Twe Imię Jezu` },
+  { title: "Jam jest chleb życia",
+    body: `G            h
+1.Jam jest Chleb Życia,
+  C                   D
+Kto do Mnie przychodzi, nie będzie łaknął,
+  G         h                 C
+Kto we Mnie wierzy, nigdy pragnąć nie będzie,
+G                      C
+Nikt nie może przyjść do Mnie,
+  a                    D
+Jeśli go nie pociągnie Ojciec.
+
+     G  D  G                 C G D
+Ref. A Ja go wskrzeszę, a Ja go wskrzeszę,
+     G          C         G D G
+A Ja go wskrzeszę w dniu ostatecznym.
+
+  G              h                   C            D
+2.Chlebem, który Ja dam, jest moje Ciało za życie świata,
+  G         h               C
+Jeśli kto spożywa ten chleb,
+G                   C             a              D
+Będzie żył na wieki, będzie żył na wieki.
+
+  G                       h              C       D
+3.Ja jestem Zmartwychwstaniem, Ja jestem Życiem,
+  G         h                       C
+Kto we Mnie wierzy, choćby i umarł,
+G               C     a       D
+Żyć będzie na wieki.` },
+  { title: "Jeden chleb",
+    body: `G          e               C
+1.Jeden chleb, co zmienia się w Chrystusa Ciało,
+  a       D7            G
+Z wielu ziaren pszenicznych się rodzi.
+  G          e                 C
+Jedno wino, co się Krwią Chrystusa stało,
+  a      D7             G
+Z soku wielu winnych gron pochodzi.
+
+  G                   C
+Jak ten chleb co złączył złote ziarna,
+  a        e       C       D
+Tak niech miłość łączy nas ofiarna.
+  G                    C
+Jak ten kielich łączy kropel wiele,
+  D       a         D7       G
+Tak nas, Chryste, w swoim złącz Kościele.
+
+  G          e               C
+2.O Pasterzu, zgromadź w jednej Swej owczarni
+  a          D7          G
+Zabłąkane owce, które giną.
+  G              e           C
+W jeden Kościół zbierz na nowo i przygarnij,
+  a             D7        G
+Byśmy jedną stali się rodziną.
+
+  G                 C
+Na ramiona Swoje weź o Panie,
+  a        e        C         D
+Tych co sami wrócić już nie mogą!
+  G                    C
+Jak ten kielich łączy kropel wiele,
+  D       a         D7       G
+Tak nas, Chryste, w swoim złącz Kościele.
+Niechaj zjednoczenia cud się stanie,
+Prowadź nas ku niebu wspólną drogą!` },
   { title: "Jego miłość",
     body: `e h
 Jego miłość zakrywa grzech,
@@ -804,8 +1043,7 @@ e h C a
 Emmanuel, Bóg pośród nas, Odkupiciel.
 
 e h
-Ref.: 
-Bóg w łasce swej do nas zniżył się.
+Ref.: Bóg w łasce swej do nas zniżył się.
 C G D
 Pozostawił chwałę nieba,
 e h
@@ -878,10 +1116,47 @@ F d e F
 W morzu miłości serca uleczy dzisiaj Pan
 C F
 Panie Jezu, przyjdź  x4` },
+  { title: "Lud Twój, Panie, lud pielgrzymi",
+    body: `E         H         cis
+Ref. Lud Twój, Panie, lud pielgrzymi
+     A          Fis     H
+     Prosi, byś był światłem,
+     E      H7        cis      E7
+     Byś na drodze do Królestwa
+     A        Fis   E     H
+     Wzmacniał serca swoim Ciałem.
+     gis     cis       fis  a  E H E
+     Zostań, zostań wśród nas, o Panie.
+
+  e               a                 e
+1.Chlebie życia, Tyś sam jest naszą siłą
+  e              D             e
+I czynisz trudną drogę tak bezpieczną,
+  e        H7          C          E7
+Jeśli siły na tym szlaku w nas osłabną,
+  A          Fis7                  H7
+Ręka Twoja niech obdarza wciąż nadzieją.
+
+  e            a             e
+2.Twoja Krew niechaj jest napojem mocy
+  e             D              e
+Kieruje zapał kroków w Twoje ślady,
+  e            H7               C         E7
+Jeśli radość gaśnie w sercach od słabości,
+  A                 Fis7            H7
+Twój głos sprawi, że obudzi się w nas świeżość.
+
+  e           a               e
+3.Twoje Ciało, o Jezu, rodzi Kościół,
+  e            D              e
+Bo uczysz, żeśmy braćmi w pyle drogi.
+  e            H7                C        E7
+Jeśli krzywdy niszczą światło Twej miłości,
+  A              Fis7           H7
+Z Twego serca płynie nowe przebaczenie.` },
   { title: "Matko o twarzy jak polska ziemia czarnej",
     body: `d g
-Ref. 
-Matko, o twarzy jak polska ziemia czarnej,
+Ref. Matko, o twarzy jak polska ziemia czarnej,
 C F A
 Matko, o twarzy jak polska ziemia znaczonej bliznami,
 d g
@@ -917,8 +1192,7 @@ d A
 Broń nas od wojny, wierzymy - zwyciężysz jeszcze raz.` },
   { title: "Matko, która nas znasz",
     body: `e C
-Ref. 
-Matko, która nas znasz,
+Ref. Matko, która nas znasz,
 D e
 Z dziećmi Twymi bądź,
 e G D
@@ -941,8 +1215,7 @@ a      H7    e  D
 Pokój światu daj.
 
 e C
-Ref. 
-Matko, która nas znasz,
+Ref. Matko, która nas znasz,
 D e
 Z dziećmi Twymi bądź,
 e G D
@@ -965,8 +1238,7 @@ a      H7    e  D
 Pokój światu daj.
 
 e C
-Ref. 
-Matko, która nas znasz,
+Ref. Matko, która nas znasz,
 D e
 Z dziećmi Twymi bądź,
 e G D
@@ -989,8 +1261,7 @@ a      H7    e  D
 Pokój światu daj.
 
 e C
-Ref. 
-Matko, która nas znasz,
+Ref. Matko, która nas znasz,
 D e
 Z dziećmi Twymi bądź,
 e G D
@@ -1013,8 +1284,7 @@ a      H7    e  D
 Pokój światu daj.
 
 e C
-Ref. 
-Matko, która nas znasz,
+Ref. Matko, która nas znasz,
 D e
 Z dziećmi Twymi bądź,
 e G D
@@ -1037,8 +1307,7 @@ a      H7    e  D
 Pokój światu daj.
 
 e C
-Ref. 
-Matko, która nas znasz,
+Ref. Matko, która nas znasz,
 D e
 Z dziećmi Twymi bądź,
 e G D
@@ -1061,8 +1330,7 @@ a      H7    e  D
 Pokój światu daj.
 
 e C
-Ref. 
-Matko, która nas znasz,
+Ref. Matko, która nas znasz,
 D e
 Z dziećmi Twymi bądź,
 e G D
@@ -1108,7 +1376,7 @@ Dzięki łasce, nie dzięki nam samym.` },
 Nasz Bóg jest potężny w mocy swej, króluje nad nami dziś
 G a h e
 Z nieba rządzi w mocy, miłości, mądrości swej.` },
-  { title: "Nasz Bóg jest wielki",
+  { title: "Nasz Bóg jest wielki - Chris Tomlin",
     body: `cis A E
 Wodę zamieniłeś w wino
 cis A E fis H
@@ -1119,8 +1387,7 @@ cis A E fis H
 Człowiek powstaje z marności, któż jest jak Ty? Tylko Ty?
 
 cis A
-Ref. 
-Nasz Bóg jest wielki, nasz Bóg jest silny
+Ref. Nasz Bóg jest wielki, nasz Bóg jest silny
 E H
 Boże nikt inny nie równa się z Tobą.
 Nasz Bóg uzdrawia, jest wszechmogący.
@@ -1146,8 +1413,7 @@ Jeśli nasz Bóg jest z nami, któż jest przeciwko nam?
 x2
 
 cis A
-Ref. 
-Nasz Bóg jest wielki, nasz Bóg jest silny
+Ref. Nasz Bóg jest wielki, nasz Bóg jest silny
 E H
 Boże nikt inny nie równa się z Tobą.
 Nasz Bóg uzdrawia, jest wszechmogący.
@@ -1168,8 +1434,7 @@ Miłość pragnie Ciebie` },
 Marana tha, marana tha! /x4
 
 d F
-ref.: 
-Nie mądrość świata tego
+ref.: Nie mądrość świata tego
 C g d
 Lecz Pana ukrzyżowanego
 F C G
@@ -1185,8 +1450,7 @@ C G
 Aby świętego Ducha zesłać nam dlatego
 
 d F
-ref.: 
-Nie mądrość świata tego
+ref.: Nie mądrość świata tego
 C g d
 Lecz Pana ukrzyżowanego
 F C G
@@ -1202,8 +1466,7 @@ C G
 Bóg wezwał z martwych i do swojej chwały, wziął stąd
 
 d F
-ref.: 
-Nie mądrość świata tego
+ref.: Nie mądrość świata tego
 C g d
 Lecz Pana ukrzyżowanego
 F C G
@@ -1221,10 +1484,8 @@ Królestwa Jego – niechaj przyjdzie – przyzywajcie!
 d || C                                F || G
 Marana tha, marana tha! /x4
 
-ref.: 
-d F
-ref.: 
-Nie mądrość świata tego
+ref.: d F
+ref.: Nie mądrość świata tego
 C g d
 Lecz Pana ukrzyżowanego
 F C G
@@ -1316,8 +1577,7 @@ B C
 Bo nigdy nie opuściłem Ciebie
 
 F C d
-Ref.
- Nikt Cię nie kocha tak jak Ja
+Ref. Nikt Cię nie kocha tak jak Ja
 B C
 Nikt Cię nie kocha tak jak Ja
 F C d
@@ -1351,7 +1611,7 @@ F C d
 Wiedz, że robię to, bo Jestem
 B C
 Twym najlepszym przyjacielem!` },
-  { title: "Oceany",
+  { title: "Oceany - Hillsong UNITED",
     body: `h fis D
 Znad oceanów do mnie wołasz
 A G A
@@ -1526,8 +1786,7 @@ a G C D7 e C G
 Gdy lęk śmierci mnie ogarnia, Ty umacniasz mnie.` },
   { title: "Panie, dobry jak chleb",
     body: `C F G
-Ref. 
-Panie, dobry jak chleb,
+Ref. Panie, dobry jak chleb,
 a F G
 Bądź uwielbiony od swego Kościoła,
 C e F C
@@ -1575,8 +1834,7 @@ G        C               G
 Bo Ty do końca nas umiłowałeś.` },
   { title: "Panie, pragnienia ludzkich serc",
     body: `C e F C F e
-Ref. 
-Panie, pragnienia ludzkich serc Ty zaspokoisz sam.
+Ref. Panie, pragnienia ludzkich serc Ty zaspokoisz sam.
 a e
 Przyjdź, Chlebie Żywy, Zbawco nasz,
 d7 G C
@@ -1596,7 +1854,7 @@ C a F e a
 3.Ty, Panie, dajesz siebie nam, by naszym życiem być,
 d G d G
 Jak braciom służyć, naucz, jak miłością, prawdą żyć.` },
-  { title: "Pasja miłości (Beata Bednarz)",
+  { title: "Pasja miłości - Beata Bednarz",
     body: `capo 1
 
 	1.
@@ -1928,7 +2186,7 @@ D A fis cis D
 Dzięki Ci Boże mój za ten krzyż, który Jezus
 A fis cis
 cierpiał za mnie, Jezus cierpiał za mnie.` },
-  { title: "Przenikasz mnie (Guadalupe)",
+  { title: "Przenikasz mnie - Guadalupe",
     body: `a C
 1. Przenikasz i znasz mnie Panie,
 a F G
@@ -1939,8 +2197,7 @@ F C G
 moje łzy i poświęcenie.
 
 F d
-Ref. 
-Tylko w Tobie prawda jest,
+Ref. Tylko w Tobie prawda jest,
 a G
 nie co mówią, nie co myślą.
 F d
@@ -1963,16 +2220,14 @@ tak cenna jest w Twoich oczach.
 Znasz moje uczucia i pragnienia, /
 nie tajne Ci moje roztargnienia.
 
-Ref. 
-Tylko w Tobie prawda jest…
+Ref. Tylko w Tobie prawda jest…
 
 instrumental F C d a F C G a
 
 F G
 Bridge: Wszystko co mam to Ty
 
-Ref. 
-Tylko w Tobie prawda jest…` },
+Ref. Tylko w Tobie prawda jest…` },
   { title: "Przybądź Święty Niepojęty",
     body: `1.
 A            C               D             A
@@ -2066,7 +2321,103 @@ Gdy o Jego ramię oprę się.
 W Nim nadzieję mam, uleciał strach.
 On najbliżej jest, zawsze troszczy się.
 Królów Król, z nami Bóg. /2x		 Jezus. /4x` },
-  { title: "Psalm 126 (niemaGotu)",
+  { title: "Psalm 63 – AdoNaj",
+    body: `
+	 
+D     	  A 	G		D
+ h     		A            G D
+Ref.
+D     	  A 	G		D
+Boże, mój Boże, Ciebie szukam;
+    h     		A            G D
+I Ciebie pragnie moja dusza
+D     	A               	G  A 	h
+Boże, mój Boże, Ciebie szukam;
+    G    	 D	            A    D
+I Ciebie pragnie moja dusza
+	
+1.
+D A h
+za Tobą tęskni dusza, ciało me,
+G A D
+jak zeschła ziemia bez wody spragniona.
+D A h fis
+W świątyni patrzę na oblicze Twe,
+G D A
+Twoja potęga niech będzie ogłoszona!
+D A h
+Skoro Twa łaska lepsza jest od życia,
+G A D
+to moje wargi będą Ciebie sławić.
+D A h fis
+Tak błogosławię Ciebie w moim życiu:
+G D A
+I wzniosę ręce, by  Ciebie błogosławić.
+
+Ref.
+D     	  A 	G		D
+Boże, mój Boże, Ciebie szukam;
+    h     		A            G D
+I Ciebie pragnie moja dusza
+D     	A               	G  A 	h
+Boże, mój Boże, Ciebie szukam;
+    G    	 D	            A    D
+I Ciebie pragnie moja dusza
+
+2.
+D A h
+Będę się cieszył, jak w wesołe święta
+G A D
+radosnym śpiewem napełnię me usta,
+D A h fis
+gdy wspomnę Ciebie na moim posłaniu
+G D A
+myślę o Tobie podczas moich czuwań.
+D A h
+Dla mnie się stałeś jedyną pomocą
+G A D
+w cieniu Twych skrzydeł wołać chce z radości:
+D A h fis
+do Ciebie przylgnąć pragnę z całą mocą
+G D A
+prawica Twoja wspiera mnie w słabości.
+
+Ref.
+D     	  A 	G		D
+Boże, mój Boże, Ciebie szukam;
+    h     		A            G D
+I Ciebie pragnie moja dusza
+D     	A               	G  A 	h
+Boże, mój Boże, Ciebie szukam;
+    G    	 D	            A    D
+I Ciebie pragnie moja dusza
+
+[Bridge]
+D A h
+A wszyscy, którzy czyhają na me życie,
+G A D
+niech zejdą w głębiny ziemi.
+D A h fis
+będą wydani pod siekące miecze
+G D A
+Oni się staną łupem dla szakali.
+D A h fis
+Kto Bogu ufa, niech się w Nim raduje
+G D A
+A niech ucichnie, kto nie chce Go chwalić.
+
+Ref.
+D     	  A 	G		D
+Boże, mój Boże, Ciebie szukam;
+    h     		A            G D
+I Ciebie pragnie moja dusza
+D     	A               	G  A 	h
+Boże, mój Boże, Ciebie szukam;
+    G    	 D	            A    D
+I Ciebie pragnie moja dusza
+
+` },
+	   { title: "Psalm 126 - niemaGotu",
     body: `1.
 fis         cis          H         A           E
 Gdy Pan odmienił los Syjonu, wydawało się nam, że śnimy!
@@ -2216,8 +2567,7 @@ a   G   F   E a
 Alleluja /4x` },
   { title: "Rozpięty na ramionach",
     body: `a C G F a E
-Ref. 
-Rozpięty na ramionach jak sokół na niebie
+Ref. Rozpięty na ramionach jak sokół na niebie
 a C G F a E
       Chrystusie, Synu Boga, spójrz, proszę, na ziemię.
 
@@ -2231,8 +2581,7 @@ F G a E
    Do ciężko pracujących, których głód poniża.
 
 a C G F a E
-Ref. 
-Rozpięty na ramionach jak sokół na niebie
+Ref. Rozpięty na ramionach jak sokół na niebie
 a C G F a E
       Chrystusie, Synu Boga, spójrz, proszę, na ziemię.
 
@@ -2246,8 +2595,7 @@ F G a E
    Na cichy ciemny kościół, dziecko wzywające Ciebie.
 
 a C G F a E
-Ref. 
-Rozpięty na ramionach jak sokół na niebie
+Ref. Rozpięty na ramionach jak sokół na niebie
 a C G F a E
       Chrystusie, Synu Boga, spójrz, proszę, na ziemię.
 
@@ -2262,8 +2610,7 @@ C G a F d G
    Ukryj mnie w silnej dłoni Swej.
 
 F G C
-Ref. 
-Kiedy fale mórz chcą porwać mnie,
+Ref. Kiedy fale mórz chcą porwać mnie,
 F G a
      Z Tobą wzniosę się, podniesiesz mnie,
 F G C
@@ -2279,7 +2626,7 @@ Stoję dziś, swoje serce, ręce tak wyciągam
 W podziwie dla Tego, który wszystko dał!
 Stoję dziś, moją duszę, Panie, Tobie składam,
 Ja chcę być jak Ty` },
-  { title: "Stwórca nasz",
+  { title: "Stwórca nasz - AdoNaj",
     body: `E
 Stwórca nasz i Król
 A
@@ -2420,7 +2767,7 @@ pokłońmy się Mu` },
 Tak mnie skrusz,
 Tak mnie złam,
 F
-Tak mnie wypal, o Panie,
+Tak mnie wypal, Panie,
 C d A
 Byś został tylko Ty, byś został tylko Ty jedynie Ty!` },
   { title: "Taki jesteś Ty (Wszechmocny)",
@@ -2572,7 +2919,7 @@ A E
 Jesteś drogą, światłem w ciemności, o tak
 fis D
 Taki jesteś Ty` },
-  { title: "To i ja",
+  { title: "To i ja - Hillsong UNITED",
     body: `ZWROTKA 1
 E
 Stwórco istnienia
@@ -2704,7 +3051,93 @@ Fis H E
 Ukochałeś nas już zanim powstał świat
 gis Fis H
 Ty byś wszystko oddał za jednego z nas` },
-  { title: "Ty Światłość Dnia",
+  { title: "Ty obecny wśród nas - Mocni w Duchu",
+    body: `
+	E                             A2
+1.On odpuszcza każdy mój grzech – miłosierny jest.
+  E                              A2
+Każdy smutek zamienia w śmiech – zna liczbę moich łez.
+  E                          A2
+Twoje święte Ciało i Krew otwiera mi oczy.
+  E                         A2
+Widzę uśmiech łagodny Twój, teraz i tu.
+
+  H                    cis       H                    cis
+Odnawiasz moje siły jak orła, jak młodego orła do lotu porywasz mnie.
+  H                    cis    H
+Odnawiasz moje siły od nowa, dajesz mi moc i podnosisz mnie!
+
+Ref.
+			A              cis
+ 	 To Ty, obecny wśród nas,
+     H             fis
+     Twoja chwała zstępuje, Twoja chwała ogarnia nas.
+     A              cis
+     To Ty, obecny wśród nas,
+     H                A
+     Twoją miłość przyjmuję. Teraz jest łaski czas.
+     A              cis
+     To Ty, obecny wśród nas,
+     H             fis
+     Twoja chwała zstępuje, Twoja chwała uwalnia nas.
+     A              cis
+     To Ty obecny wśród nas
+     H                A
+     Twoją miłość przyjmuję. Jesteś tu..
+
+  E                             A2
+2.On z choroby uzdrawia mnie – tak potężny jest.
+  E                             A2
+Każdą ciemność rozjaśnić chce – nadzieją zmienia mnie.
+  E                           A2
+Twoje święte Słowo i Krzyż wskazują mi drogę.
+  E                         A2
+Zmartwychwstałeś i żyjesz dziś, teraz i tu.
+
+  H                    cis       H                    cis
+Odnawiasz moje siły jak orła, jak młodego orła do lotu porywasz mnie.
+  H                    cis    H
+Odnawiasz moje siły od nowa, dajesz mi moc i podnosisz mnie!
+
+     Ref.
+			A              cis
+ 	 To Ty, obecny wśród nas,
+     H             fis
+     Twoja chwała zstępuje, Twoja chwała ogarnia nas.
+     A              cis
+     To Ty, obecny wśród nas,
+     H                A
+     Twoją miłość przyjmuję. Teraz jest łaski czas. /x2
+
+BRIDGE
+  A                 cis        H           A
+Uwielbiam, nie zapominam - tyle dajesz mi codziennie.
+  A                 cis        H           fis
+Uwielbiam, nie zapominam - tyle dajesz mi swej łaski.
+  A                 cis        H           A
+Uwielbiam, nie zapominam - tyle dajesz mi codziennie.
+  A                 cis        H
+Uwielbiam, nie zapominam - tyle dajesz mi...
+			(Uwielbiamy Ciebie!
+			Wywyższamy Ciebie!
+			Jesteś obecny, wypełnij sobą świat!
+			Uwielbiamy Ciebie!
+			Wywyższamy Ciebie!
+			Jesteś obecny tu, mój Pan
+			Jesteś tu obecny!
+
+Ref.
+			A              cis
+ 	 To Ty, obecny wśród nas,
+     H             fis
+     Twoja chwała zstępuje, Twoja chwała ogarnia nas.
+     A              cis
+     To Ty, obecny wśród nas,
+     H                A
+     Twoją miłość przyjmuję. Teraz jest łaski czas. /x2
+			
+			` },
+  { title: "Ty Światłość Dnia - Tim Hughes",
     body: `1.
 D            A                   G
 Ty światłość dnia wszedłeś w moje ciemności,
@@ -2752,8 +3185,7 @@ D A h G
 Wezwij Imię Twojego Pana, i On zbawi Cię!    x4
 
 D A
-Ref. 
-Jestem tu, by wielbić, by oddawać chwałę,
+Ref. Jestem tu, by wielbić, by oddawać chwałę,
 h G
    jestem tu, by wyznać: to mój Bóg.
 dobry i łaskawy, cały tak wspaniały,
@@ -2792,8 +3224,7 @@ I doświadczyć, Panie, łaski Twej.
 x2` },
   { title: "Umiłowany (Uwielbiamy Cię)",
     body: `D h G9 D/ Es cm As Es (oryg.)
-Ref. 
-Uwielbiamy Cię, uwielbiamy Cię, nasz Jedyny, Umiłowany. x2
+Ref. Uwielbiamy Cię, uwielbiamy Cię, nasz Jedyny, Umiłowany. x2
 
 A G D A/ B As Es B
 1. Kto zawsze pierwszy szuka nas? Tylko Ty, Jezu Ty!
@@ -2802,16 +3233,14 @@ Kto po nas w ciemność schyla się? Tylko Ty, Jezu Ty!
 Podnosi do godności córek, synów? Tylko Ty, Jezu Ty.
 
 D h G9 D/ Es cm As Es (oryg.)
-Ref. 
-Uwielbiamy Cię, uwielbiamy Cię, nasz Jedyny, Umiłowany.
+Ref. Uwielbiamy Cię, uwielbiamy Cię, nasz Jedyny, Umiłowany.
 
 A G D A/ B As Es B
 2. Kto w swoich dłoniach trzyma nas? Tylko Ty, Jezu Ty!
 Kto chroni nasze życie i jest nam wierny? Tylko Ty.
 
 D h G9 D/ Es cm As Es (oryg.)
-Ref. 
-Uwielbiamy Cię, uwielbiamy Cię, nasz Jedyny, Umiłowany. x2
+Ref. Uwielbiamy Cię, uwielbiamy Cię, nasz Jedyny, Umiłowany. x2
 
 Bridge:
 G D/ As Es
@@ -2851,63 +3280,98 @@ G C D
 Chcę Ci dziękować ze wszystkich sił
 e D
 Dajesz mi siebie bym na wieki żył.` },
-  { title: "Wdzięczność (Gratitude)",
+  { title: "Wdzięczność (Gratitude) - Brandon Lake",
     body: ` ZWROTKA 1
-E
+F
 Jakich użyć słów
-cis
+d
 Jak wyrazić to
-H
+C
 Jak opisać mam
-A
+B
 Całą wdzięczność mą
+
 ZWROTKA 2
-E
+F
 Mogę śpiewać Ci
-cis
+d
 Co dzień inną pieśń
-H
+C
 Chociaż czuję, że
-A
+B
 To tak mała rzecz
 
 REFREN
-E
+F
 Więc podnoszę me ręce
-H
+C
 I znowu oddaję Ci cześć
 Bo wszystko, co mam dziś
-A cis H
+B d C
 To alleluja, alleluja
-E
+F
 Nie wiem, co mogę dać
-H
+C
 Z czego mógłby ucieszyć się Król
 Prócz serca, co śpiewa Mu
-A cis H E
+B d C F
 Alleluja, alleluja
 
 ZWROTKA 3
+F
 To, co mogę dać
+d
 To ta jedna rzecz
+C
 Z całych moich sił
+B
 Będę wielbić Cię
 
 REFREN
+F
+Więc podnoszę me ręce
+C
+I znowu oddaję Ci cześć
+Bo wszystko, co mam dziś
+B d C
+To alleluja, alleluja
+F
+Nie wiem, co mogę dać
+C
+Z czego mógłby ucieszyć się Król
+Prócz serca, co śpiewa Mu
+B d C F
+Alleluja, alleluja
 
 BRIDGE
-E
+F
 O, duszo ma, nie milcz już więcej
-H
+C
 I podnieś swój głos, bo lew w tobie drzemie
-A
+B
 Twój Bóg dał ci moc
-E H
-Powstań, uwielbij Go	x2
+F C
+Powstań, uwielbij Go   x2
 
 REFREN
-E D A a
-outro (Alleluja)` },
+F
+Więc podnoszę me ręce
+C
+I znowu oddaję Ci cześć
+Bo wszystko, co mam dziś
+B d C
+To alleluja, alleluja
+F
+Nie wiem, co mogę dać
+C
+Z czego mógłby ucieszyć się Król
+Prócz serca, co śpiewa Mu
+B d C F
+Alleluja, alleluja
+
+OUTRO
+F Es B b
+(Alleluja)` },
   { title: "Wierzę w Ciebie Panie",
     body: `1.
 d B C a
@@ -3013,8 +3477,7 @@ G       h   e
 K'Tobie wołają.` },
   { title: "Wszyscy ludzie klaszczą w dłonie",
     body: `C G D e
-Ref. 
-Wszyscy ludzie klaszczą w dłonie
+Ref. Wszyscy ludzie klaszczą w dłonie
 cała ziemia śpiewa, śpiewa
 Wielka radość na Syjonie
 Król zstępuje z nieba, z nieba x2
@@ -3025,8 +3488,7 @@ Nadejdzie dzień, nadejdzie dzień
 Uwielbi Go (uwielbi Go) cały świat
 
  C G D e
-Ref. 
-Wszyscy ludzie klaszczą w dłonie
+Ref. Wszyscy ludzie klaszczą w dłonie
 cała ziemia śpiewa, śpiewa
 Wielka radość na Syjonie
 Król zstępuje z nieba, z nieba x2` },
@@ -3041,8 +3503,7 @@ G A h G A D
 Jezu Zbawco do dzieci Twych
 
 G A h
-Ref. 
-Jak spragniona ziemia rosy
+Ref. Jak spragniona ziemia rosy
 G A h
 dusza ma
 G A h
@@ -3078,12 +3539,17 @@ Twoje królestwo,
 G
 Twoja jest chwała, 
 D
-Na zawsze amen.  
+Na zawsze amen. 
 x4
 
 [Refren]
  C  Dsus2  e  h 
 Yeshuuuuua aaaaaea aaaahaaa  x4` },
+  { title: "Z Tobą ciemność",
+    body: `Fis h A D G Fis
+Z Tobą ciemność nie będzie ciemna wokół mnie
+h A D e6 Fis5/4 Fis5
+A noc tak jak dzień zajaśnieje.` },
   { title: "Zapisane – AdoNaj",
     body: `[Recytacja / Iz 49, 15-16]
 a F C G a
@@ -3131,34 +3597,31 @@ By mnie widzieć, kiedyś konał.` },
   { title: "Zawierzenie - AdoNaj",
     body: `Wstęp:
 C C7 G9 G
-1.
 a a7 F
 Przyjmij me ciało, duszę i ducha,
 C C7 G9 G
 Twojego Słowa
 a a7 F
 pragnę dziś słuchać.
-2.
 a a7 F
 Me życie teraz oraz w wieczności,
 C C7 G9 G
 Przyjmij i zanurz
 a a7 F
 w swojej miłości.
-3.
 a a7 F
 Przyjmij mój rozum, uczucia, wolę,
 C C7 G9 G
 One od dzisiaj
 a a7 F
 niech będą Twoje.
-4.
 a a7 F
 Wszystko czym jestem, co mnie stanowi,
 C C7 G9 G
 Niech Twoja łaska
 a a
 we mnie odnowi.
+
 Refren:
 a7 d d7
 O Panie mój! O Adonai!
@@ -3173,9 +3636,9 @@ Tyś jest mój Bóg, Ty we mnie trwaj!` },
 Ziemia, którą mi dajesz nie jest fikcją ani bajką
 G C D G C D
 Wolność, którą mam w Tobie jest prawdziwa x2
- G D
 Ref. 
-Będę tańczył przed Twoim tronem i oddam Tobie chwałę
+G D
+ Będę tańczył przed Twoim tronem i oddam Tobie chwałę
 e C G D
 I nic już nie zamknie mi ust
 G D
@@ -3187,11 +3650,19 @@ G C D G C D
 2. Większy, większy jest we mnie Ten, który mnie umacnia!
 G C D G C D
 Żaden Goliat nie może z nim równać się!
-Ref. x2` },
+
+Ref. 
+G D
+ Będę tańczył przed Twoim tronem i oddam Tobie chwałę
+e C G D
+I nic już nie zamknie mi ust
+G D
+Żaden mur i żadna ściana, największa nawet tama
+e C G D
+Już nie, nie zatrzyma mnie jużx2` },
   { title: "Zmartwychwstał Pan i żyje dziś",
     body: `e C
-Ref.: 
-Zmartwychwstał Pan i żyje dziś,
+Ref.: Zmartwychwstał Pan i żyje dziś,
 G D
 blaskiem jaśnieje noc
 e C
@@ -3225,9 +3696,6 @@ Już nie będę się bał – cóż może zrobić mi śmierć?
 e D G a H7
 Nie, nie lękam się i śpiewam chwały pieśń.` }
 ];
-<script>
-(function(){
-  const SONGS = JSON.parse(document.getElementById('song-data').textContent);
 
   const listContainer = document.getElementById('listContainer');
   const searchInput = document.getElementById('search');
@@ -3284,8 +3752,12 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
   }
 
   // Heuristic: a line is a "chord line" if, once split on whitespace, every
-  // token looks like a chord symbol (e.g. G, Am, h, fis, D/Fis, C7, A7+, cis)
-  const CHORD_TOKEN = /^\(?[A-HZ][a-z#b0-9\+\/\.\|\-]*\)?$/;
+  // token looks like a chord symbol. Supports both major (uppercase root,
+  // e.g. G, C7, D/Fis) and Polish minor notation (lowercase root, e.g.
+  // a, h, fis, cis, gis, dis, ais - the h/is/es forms used for minor chords
+  // and sharps/flats in Polish chord charts), plus slash chords, sus/maj/
+  // min/dim/aug/add qualifiers and numeric extensions (7, 9, sus4...).
+  const CHORD_TOKEN = /^\(?(?:[A-H]|[a-h])(?:is|es|s)?(?:sus|maj|min|dim|aug|add|m)?[0-9]*[\+\-]?(?:\/(?:(?:[A-H]|[a-h])(?:is|es|s)?[0-9]*)?)?\)?$/;
   function isChordLine(line){
     const trimmed = line.trim();
     if(!trimmed) return false;
@@ -3293,7 +3765,7 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
     if(tokens.length === 0) return false;
     let chordish = 0;
     tokens.forEach(t => { if(CHORD_TOKEN.test(t)) chordish++; });
-    return chordish / tokens.length >= 0.8 && /[A-Ha-h]/.test(trimmed);
+    return chordish / tokens.length >= 0.8;
   }
   function isRefLine(line){
     return /^\s*(Ref\.?|Refren|REFREN|Bridge|BRIDGE|Coda)\b/i.test(line);
