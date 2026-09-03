@@ -109,9 +109,9 @@
   }
   .pl-del:active{color:#f87171;}
 
-  /* ---------- Detail view ---------- */
+  /* ---------- Detail view (Z-INDEX POPRAWIONY NA 20) ---------- */
   #detail-view{
-    position:fixed; inset:0; background:var(--bg); display:none; flex-direction:column; z-index:10;
+    position:fixed; inset:0; background:var(--bg); display:none; flex-direction:column; z-index:20;
   }
   #detail-view.open{display:flex;}
   .detail-header{
@@ -153,7 +153,9 @@
   #playlist-detail-view, #playlist-picker-view{
     position:fixed; inset:0; background:var(--bg); display:none; flex-direction:column; z-index:10;
   }
-  #playlist-detail-view.open, #playlist-picker-view.open{display:flex; z-index:11;}
+  #playlist-detail-view.open{display:flex; z-index:10;}
+  #playlist-picker-view.open{display:flex; z-index:15;}
+
   .pld-header-row{display:flex; align-items:center; gap:4px;}
   .pld-title-btn{
     flex:1; text-align:left; background:none; border:none; color:var(--text);
@@ -208,7 +210,7 @@
 
   /* ---------- Quick add-to-setlist modal ---------- */
   #quickAddBackdrop{
-    position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; z-index:20;
+    position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; z-index:30;
     align-items:flex-end; justify-content:center;
   }
   #quickAddBackdrop.open{display:flex;}
@@ -232,7 +234,7 @@
 
   /* ---------- Custom dialog ---------- */
   #customDialogBackdrop{
-    position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; z-index:30;
+    position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; z-index:40;
     align-items:center; justify-content:center; padding:20px;
   }
   #customDialogBackdrop.open{display:flex;}
