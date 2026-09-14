@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="AdoNaj">
-<title>AdoNaj</title>
+<title>Śpiewnik AdoNaj</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-190.png">
 <link rel="apple-touch-icon" href="icons/icon-190.png">
@@ -38,7 +38,7 @@
   }
   header h1{
     margin:0 0 10px; font-size:20px; font-weight:700; letter-spacing:.2px;
-    display:flex; align-items:center; gap:8px;
+    display:flex; align-items:center; gap:8px; color:var(--accent);
   }
   header h1 .dot{color:var(--accent);}
   .search-wrap{position:relative;}
@@ -346,7 +346,7 @@
     padding:12px 16px; border-bottom:1px solid var(--border); background:var(--bg2);
   }
   #calOpenBtn{
-    background:none; border:none; color:var(--text); font-size:15px; font-weight:700;
+    background:none; border:none; color:var(--accent); font-size:15px; font-weight:700;
     padding:4px 0; cursor:pointer; display:flex; align-items:center; gap:6px;
   }
   #calOpenBtn::after{content:'›'; color:var(--muted); font-weight:400;}
@@ -472,7 +472,7 @@
 
   <div id="list-view">
     <header>
-      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span>AdoNaj - Adorujmy Najwyższego</h1>
+      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span> Śpiewnik AdoNaj</h1>
       <div class="tabs">
         <button class="tab-btn active" id="tabSongs" data-tab="songs">Pieśni</button>
         <button class="tab-btn" id="tabPlaylists" data-tab="playlists">Setlisty</button>
@@ -503,7 +503,7 @@
 
   <div id="viewer-view" style="display:none; flex-direction:column; height:100%;">
     <header>
-      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span>AdoNaj - Adorujmy Najwyższego</h1>
+      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span> Śpiewnik AdoNaj</h1>
       <div class="count">🔒 Udostępniona setlista - tylko do odczytu</div>
     </header>
     <div class="detail-header" style="background:transparent; border-bottom:1px solid var(--border);">
@@ -759,6 +759,9 @@
     return localStorage.getItem('spiewnik_sync_code') || '';
   }
 
+  const CAL_EVENTS_KEY = 'adonaj_calendar_events_v1'; // shared with the calendar feature below - same
+                                                        // sync doc carries both playlists and events.
+
   let syncUnsub = null;
 
   async function connectSync(code, onRemoteUpdate){
@@ -770,18 +773,21 @@
     const ref = fbApi.doc(fbDb, 'syncs', code);
     const snap = await fbApi.getDoc(ref);
     if(snap.exists()){
-      const remote = (snap.data() && snap.data().playlists) || [];
-      localStorage.setItem('spiewnik_playlists', JSON.stringify(remote));
-      onRemoteUpdate(remote);
+      const data = snap.data() || {};
+      localStorage.setItem('spiewnik_playlists', JSON.stringify(data.playlists || []));
+      localStorage.setItem(CAL_EVENTS_KEY, JSON.stringify(data.calendarEvents || []));
+      onRemoteUpdate();
     } else {
-      const local = JSON.parse(localStorage.getItem('spiewnik_playlists') || '[]');
-      await fbApi.setDoc(ref, { playlists: local, updatedAt: Date.now() });
+      const localPlaylists = JSON.parse(localStorage.getItem('spiewnik_playlists') || '[]');
+      const localCalendar = JSON.parse(localStorage.getItem(CAL_EVENTS_KEY) || '[]');
+      await fbApi.setDoc(ref, { playlists: localPlaylists, calendarEvents: localCalendar, updatedAt: Date.now() });
     }
     syncUnsub = fbApi.onSnapshot(ref, (snap2) => {
       if(snap2.metadata.hasPendingWrites) return;
-      const remote = (snap2.data() && snap2.data().playlists) || [];
-      localStorage.setItem('spiewnik_playlists', JSON.stringify(remote));
-      onRemoteUpdate(remote);
+      const data2 = snap2.data() || {};
+      localStorage.setItem('spiewnik_playlists', JSON.stringify(data2.playlists || []));
+      localStorage.setItem(CAL_EVENTS_KEY, JSON.stringify(data2.calendarEvents || []));
+      onRemoteUpdate();
     }, () => { /* connection error - ignore, local copy remains authoritative */ });
   }
 
@@ -790,7 +796,7 @@
     localStorage.removeItem('spiewnik_sync_code');
   }
 
-  async function pushToCloudIfConnected(list){
+  async function pushToCloudIfConnected(){
     const code = getSyncCode();
     if(!code) return;
     try {
@@ -798,7 +804,9 @@
       if(!ok) return;
       await ensureAuth();
       const ref = fbApi.doc(fbDb, 'syncs', code);
-      await fbApi.setDoc(ref, { playlists: list, updatedAt: Date.now() });
+      const playlists = JSON.parse(localStorage.getItem('spiewnik_playlists') || '[]');
+      const calendarEvents = JSON.parse(localStorage.getItem(CAL_EVENTS_KEY) || '[]');
+      await fbApi.setDoc(ref, { playlists, calendarEvents, updatedAt: Date.now() });
     } catch(e){ /* offline / blocked - local copy already saved, will retry on next change */ }
   }
 
@@ -6149,7 +6157,7 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
   }
   function savePlaylists(list){
     try { localStorage.setItem('spiewnik_playlists', JSON.stringify(list)); } catch(e){}
-    pushToCloudIfConnected(list);
+    pushToCloudIfConnected();
   }
   function genId(){
     return 'pl_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
@@ -6219,12 +6227,15 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
       renderPlaylistSongs();
       renderPlaylistDetailHeader();
     }
+    renderCalUpcoming();
+    if(calendarView.classList.contains('open')) renderCalMonth();
+    if(calDaySheetBackdrop.classList.contains('open')) renderCalDayEventsList();
   }
 
   syncBtn.addEventListener('click', async () => {
     const current = getSyncCode();
     const input = await customPrompt(
-      'Podaj kod synchronizacji - ten sam kod wpisany na innym urządzeniu automatycznie połączy Wasze setlisty.\n\nZostaw puste pole i zatwierdź, aby wyłączyć synchronizację.',
+      'Podaj kod synchronizacji - ten sam kod wpisany na innym urządzeniu automatycznie połączy Wasze setlisty i kalendarz.\n\nZostaw puste pole i zatwierdź, aby wyłączyć synchronizację.',
       current
     );
     if(input === null) return;
@@ -6966,12 +6977,12 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
   });
 
   // ---------- Kalendarz wydarzeń/prób ----------
-  const CAL_EVENTS_KEY = 'adonaj_calendar_events_v1';
   function getCalEvents(){
     try { return JSON.parse(localStorage.getItem(CAL_EVENTS_KEY) || '[]'); } catch(e){ return []; }
   }
   function saveCalEvents(list){
     try { localStorage.setItem(CAL_EVENTS_KEY, JSON.stringify(list)); } catch(e){ /* not fatal */ }
+    pushToCloudIfConnected();
   }
 
   function pad2(n){ return String(n).padStart(2,'0'); }
