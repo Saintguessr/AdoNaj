@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="AdoNaj">
-<title>Śpiewnik AdoNaj</title>
+<title>AdoNaj</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-190.png">
 <link rel="apple-touch-icon" href="icons/icon-190.png">
@@ -327,6 +327,125 @@
     background:var(--card2); color:var(--muted); font-size:12.5px; text-align:left; cursor:pointer;
   }
   .met-sound-btn.active{border-color:var(--accent); color:var(--accent); font-weight:700;}
+
+  /* ---------- Autoprzewijanie (auto-scroll) ---------- */
+  #autoscrollPanel{
+    position:fixed; left:16px; bottom:calc(16px + var(--safe-bottom)); z-index:40;
+    width:220px; background:var(--bg2); border:1px solid var(--border); border-radius:16px;
+    padding:14px; box-shadow:0 8px 26px rgba(0,0,0,.55); display:none;
+  }
+  #autoscrollPanel.open{display:block;}
+  .as-toggle-btn{
+    width:34px; height:34px; border-radius:8px; border:1px solid var(--border);
+    background:var(--card2); color:var(--text); font-size:16px; cursor:pointer; margin-right:4px;
+  }
+  .as-toggle-btn.active{color:var(--accent); border-color:var(--accent);}
+
+  /* ---------- Kalendarz: widget na ekranie głównym ---------- */
+  #calWidget{
+    padding:12px 16px; border-bottom:1px solid var(--border); background:var(--bg2);
+  }
+  #calOpenBtn{
+    background:none; border:none; color:var(--text); font-size:15px; font-weight:700;
+    padding:4px 0; cursor:pointer; display:flex; align-items:center; gap:6px;
+  }
+  #calOpenBtn::after{content:'›'; color:var(--muted); font-weight:400;}
+  #calUpcomingList{
+    display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+    margin-top:10px; padding-bottom:2px;
+  }
+  #calUpcomingList:empty::after{
+    content:'Brak zaplanowanych wydarzeń'; color:var(--muted); font-size:13px;
+  }
+  .cal-pill{
+    flex-shrink:0; border-radius:12px; padding:8px 12px; min-width:120px;
+    font-size:12.5px; line-height:1.45; color:#1e1b0a; cursor:pointer; border:none;
+    text-align:left; font-family:inherit;
+  }
+  .cal-pill.wydarzenie{background:var(--accent);}
+  .cal-pill.proba{background:#7dd3fc;}
+  .cal-pill b{display:block; font-size:13.5px; margin-bottom:1px;}
+
+  /* ---------- Kalendarz: widok miesiąca ---------- */
+  #calendar-view{
+    position:fixed; inset:0; background:var(--bg); display:none; flex-direction:column; z-index:12;
+  }
+  #calendar-view.open{display:flex;}
+  .cal-nav{
+    display:flex; align-items:center; gap:8px; padding:10px 16px;
+  }
+  .cal-nav button{
+    background:var(--card2); border:1px solid var(--border); color:var(--text);
+    border-radius:8px; padding:8px 14px; font-size:14px; cursor:pointer;
+  }
+  .cal-nav #calPrevBtn, .cal-nav #calNextBtn{padding:8px 16px; font-size:16px; font-weight:700;}
+  .cal-nav #calTodayBtn{flex:1; text-align:center; color:var(--accent); font-weight:700;}
+  .cal-weekdays{
+    display:grid; grid-template-columns:repeat(7,1fr); padding:0 16px;
+    color:var(--muted); font-size:12px; font-weight:700; text-align:center;
+  }
+  .cal-grid{
+    display:grid; grid-template-columns:repeat(7,1fr); gap:4px; padding:8px 12px; flex:1; align-content:start;
+  }
+  .cal-day{
+    aspect-ratio:1; border-radius:10px; border:1px solid transparent; background:var(--card2);
+    color:var(--text); font-size:14px; cursor:pointer; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:3px; padding:2px;
+  }
+  .cal-day.other-month{background:none; color:var(--muted); opacity:.4; cursor:default;}
+  .cal-day.today{border-color:var(--accent); font-weight:700;}
+  .cal-day-dots{display:flex; gap:3px;}
+  .cal-dot{width:6px; height:6px; border-radius:50%; display:inline-block;}
+  .cal-dot-proba{background:#7dd3fc;}
+  .cal-dot-wydarzenie{background:var(--accent);}
+  .cal-legend{
+    display:flex; gap:18px; justify-content:center; padding:10px 16px calc(16px + var(--safe-bottom));
+    color:var(--muted); font-size:12.5px;
+  }
+  .cal-legend span{display:flex; align-items:center; gap:6px;}
+
+  /* ---------- Kalendarz: arkusz dnia (dodawanie/edycja wydarzeń) ---------- */
+  #calDaySheetBackdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; z-index:21;
+    align-items:flex-end; justify-content:center;
+  }
+  #calDaySheetBackdrop.open{display:flex;}
+  #calDaySheet{
+    width:100%; max-width:480px; background:var(--bg2); border-radius:16px 16px 0 0;
+    border:1px solid var(--border); border-bottom:none;
+    padding:16px 16px calc(16px + var(--safe-bottom)); max-height:85vh; overflow-y:auto;
+  }
+  .cal-day-sheet-header{
+    display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;
+  }
+  .cal-day-sheet-header span{font-size:16px; font-weight:700; text-transform:capitalize;}
+  #calDayEventsList{margin-bottom:6px;}
+  .cal-day-event-item{
+    display:flex; align-items:center; gap:10px; padding:10px 10px; border-radius:10px;
+    background:var(--card2); margin-bottom:8px;
+  }
+  .cal-day-event-item .cal-dot{width:10px; height:10px; flex-shrink:0;}
+  .cal-day-event-item .cal-ev-info{flex:1; min-width:0; font-size:13.5px; line-height:1.4;}
+  .cal-day-event-item .cal-ev-info b{display:block; font-size:14.5px;}
+  .cal-day-event-item .cal-ev-info .muted{color:var(--muted);}
+  .cal-day-event-item button{
+    background:none; border:none; color:#f87171; font-size:17px; cursor:pointer; padding:6px;
+  }
+  .cal-day-form{margin-top:10px; padding-top:12px; border-top:1px solid var(--border);}
+  .cal-type-toggle{display:flex; gap:8px; margin-bottom:10px;}
+  .cal-type-btn{
+    flex:1; padding:10px; border-radius:10px; border:1px solid var(--border);
+    background:var(--card2); color:var(--text); font-size:14px; font-weight:700; cursor:pointer;
+  }
+  .cal-type-btn.cal-type-proba.active{background:#7dd3fc; color:#0c2a3a; border-color:#7dd3fc;}
+  .cal-type-btn.cal-type-wydarzenie.active{background:var(--accent); color:#1e1b0a; border-color:var(--accent);}
+  .cal-input{
+    width:100%; padding:11px 12px; border-radius:10px; border:1px solid var(--border);
+    background:var(--card2); color:var(--text); font-size:15px; outline:none; margin-bottom:10px; box-sizing:border-box;
+  }
+  .cal-input:focus{border-color:var(--accent);}
+  .cal-form-row{display:flex; gap:10px;}
+  .cal-form-row .cal-input{flex:1; min-width:0;}
 </style>
 </head>
 <body>
@@ -353,7 +472,7 @@
 
   <div id="list-view">
     <header>
-      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span> Śpiewnik AdoNaj</h1>
+      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span>AdoNaj - Adorujmy Najwyższego</h1>
       <div class="tabs">
         <button class="tab-btn active" id="tabSongs" data-tab="songs">Pieśni</button>
         <button class="tab-btn" id="tabPlaylists" data-tab="playlists">Setlisty</button>
@@ -366,6 +485,10 @@
         <div class="count" id="count"></div>
       </div>
     </header>
+    <div id="calWidget">
+      <button id="calOpenBtn">📅 Kalendarz</button>
+      <div id="calUpcomingList"></div>
+    </div>
     <div id="songsPane">
       <div id="listContainer"></div>
     </div>
@@ -380,7 +503,7 @@
 
   <div id="viewer-view" style="display:none; flex-direction:column; height:100%;">
     <header>
-      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span> Śpiewnik AdoNaj</h1>
+      <h1><span class="dot"><img src="icons/icon-192.png" alt="" style="height: 30px; vertical-align: middle;"></span>AdoNaj - Adorujmy Najwyższego</h1>
       <div class="count">🔒 Udostępniona setlista - tylko do odczytu</div>
     </header>
     <div class="detail-header" style="background:transparent; border-bottom:1px solid var(--border);">
@@ -397,6 +520,7 @@
       <button class="back-btn" id="backBtn">‹ Wróć</button>
       <div class="detail-title" id="detailTitle"></div>
       <button class="pl-add-btn" id="addToPlaylistBtn" title="Dodaj do setlisty">♫+</button>
+      <button class="as-toggle-btn" id="autoscrollToggleBtn" title="Autoprzewijanie">⇅</button>
       <div class="font-controls">
         <button id="fontMinus">A-</button>
         <button id="fontPlus">A+</button>
@@ -414,6 +538,7 @@
         <button class="pld-title-btn" id="pldTitleBtn"></button>
       </div>
       <button class="pld-icon-btn" id="pldShareBtn" title="Udostępnij (tylko do odczytu)">🔗</button>
+      <button class="pld-icon-btn" id="pldExportBtn" title="Eksportuj do prezentacji (PDF)">📊</button>
       <button class="pld-icon-btn" id="pldDeleteBtn" title="Usuń setlistę">🗑</button>
     </div>
     <div id="playlistSongsContainer"></div>
@@ -442,6 +567,48 @@
       <ul class="quick-pl-list" id="quickAddList"></ul>
       <div class="quick-new-row">
         <button id="quickAddNewBtn">+ Nowa setlista z tą pieśnią</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="calendar-view">
+    <div class="detail-header">
+      <button class="back-btn" id="calBackBtn">‹ Wróć</button>
+      <div class="detail-title" id="calMonthTitle"></div>
+    </div>
+    <div class="cal-nav">
+      <button id="calPrevBtn" aria-label="Poprzedni miesiąc">‹</button>
+      <button id="calTodayBtn">Dziś</button>
+      <button id="calNextBtn" aria-label="Następny miesiąc">›</button>
+    </div>
+    <div class="cal-weekdays">
+      <span>Pn</span><span>Wt</span><span>Śr</span><span>Cz</span><span>Pt</span><span>So</span><span>Nd</span>
+    </div>
+    <div id="calGrid" class="cal-grid"></div>
+    <div class="cal-legend">
+      <span><i class="cal-dot cal-dot-proba"></i> Próba</span>
+      <span><i class="cal-dot cal-dot-wydarzenie"></i> Wydarzenie</span>
+    </div>
+  </div>
+
+  <div id="calDaySheetBackdrop">
+    <div id="calDaySheet">
+      <div class="cal-day-sheet-header">
+        <span id="calDaySheetTitle"></span>
+        <button id="calDaySheetCloseBtn" class="pld-icon-btn" title="Zamknij">×</button>
+      </div>
+      <div id="calDayEventsList"></div>
+      <div class="cal-day-form">
+        <div class="cal-type-toggle">
+          <button type="button" class="cal-type-btn cal-type-proba active" id="calTypeProbaBtn">Próba</button>
+          <button type="button" class="cal-type-btn cal-type-wydarzenie" id="calTypeWydarzenieBtn">Wydarzenie</button>
+        </div>
+        <input id="calEventName" class="cal-input" type="text" placeholder="Nazwa wydarzenia" style="display:none;" autocomplete="off">
+        <div class="cal-form-row">
+          <input id="calEventTime" class="cal-input" type="time" placeholder="Godzina">
+          <input id="calEventPlace" class="cal-input" type="text" placeholder="Miejsce" autocomplete="off">
+        </div>
+        <button id="calEventSaveBtn" class="pld-add-btn">+ Dodaj</button>
       </div>
     </div>
   </div>
@@ -504,14 +671,32 @@
     </div>
   </div>
 
+  <div id="autoscrollPanel">
+    <div class="met-header">
+      <span>Autoprzewijanie</span>
+      <button id="autoscrollCloseBtn" class="pld-icon-btn" title="Zwiń">×</button>
+    </div>
+
+    <button id="autoscrollPlayBtn" class="met-play-btn">▶ Start</button>
+
+    <div class="met-row" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <div style="display:flex; justify-content:space-between;">
+        <span class="met-row-label">Szybkość</span>
+        <span id="autoscrollSpeedValue" style="color:var(--accent); font-weight:800;">10</span>
+      </div>
+      <input type="range" id="autoscrollSpeedSlider" min="1" max="20" step="1" value="10" style="width:100%; accent-color:var(--accent);">
+    </div>
+  </div>
+
 </div>
 
 <script type="module">
   // ---------- Firebase (cross-device setlist sync) ----------
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-  import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js";
-  import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
-
+  // Loaded lazily and defensively: this is an OPTIONAL feature (cloud sync of
+  // setlists). If the network/CDN/firewall blocks it, the whole app used to
+  // fail to start (a failed static `import` aborts the entire module, taking
+  // the song list and everything else down with it). Now a Firebase failure
+  // only disables sync - songs, setlists, metronome, autoscroll, etc. keep working.
   const firebaseConfig = {
     apiKey: "AIzaSyADWqBD7BHltXrtEPq5nzcQPXbj_EFb1ME",
     authDomain: "spiewnik-adonaj.firebaseapp.com",
@@ -521,17 +706,49 @@
     appId: "1:1057517558031:web:74614b50afe7ff7180867a"
   };
 
-  const fbApp = initializeApp(firebaseConfig);
-  const fbAuth = getAuth(fbApp);
-  const fbDb = getFirestore(fbApp);
+  let fbApp = null, fbAuth = null, fbDb = null, fbApi = null;
+  let firebaseLoadPromise = null;
+
+  function loadFirebase(){
+    if(!firebaseLoadPromise){
+      firebaseLoadPromise = (async () => {
+        try {
+          const [appMod, authMod, storeMod] = await Promise.all([
+            import("https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js"),
+            import("https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"),
+            import("https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js")
+          ]);
+          fbApp = appMod.initializeApp(firebaseConfig);
+          fbAuth = authMod.getAuth(fbApp);
+          fbDb = storeMod.getFirestore(fbApp);
+          fbApi = {
+            signInAnonymously: authMod.signInAnonymously,
+            onAuthStateChanged: authMod.onAuthStateChanged,
+            doc: storeMod.doc,
+            setDoc: storeMod.setDoc,
+            getDoc: storeMod.getDoc,
+            onSnapshot: storeMod.onSnapshot
+          };
+          return true;
+        } catch(e){
+          console.warn('Synchronizacja w chmurze niedostępna (Firebase nie załadował się):', e);
+          return false;
+        }
+      })();
+    }
+    return firebaseLoadPromise;
+  }
 
   let authReadyPromise = null;
   function ensureAuth(){
     if(!authReadyPromise){
-      authReadyPromise = new Promise((resolve) => {
-        onAuthStateChanged(fbAuth, user => {
-          if(user) resolve(user);
-          else signInAnonymously(fbAuth).catch(() => resolve(null));
+      authReadyPromise = loadFirebase().then(ok => {
+        if(!ok) return null;
+        return new Promise((resolve) => {
+          fbApi.onAuthStateChanged(fbAuth, user => {
+            if(user) resolve(user);
+            else fbApi.signInAnonymously(fbAuth).catch(() => resolve(null));
+          });
         });
       });
     }
@@ -545,20 +762,22 @@
   let syncUnsub = null;
 
   async function connectSync(code, onRemoteUpdate){
+    const ok = await loadFirebase();
+    if(!ok) throw new Error('Synchronizacja w chmurze jest niedostępna - sprawdź połączenie z internetem.');
     if(syncUnsub){ syncUnsub(); syncUnsub = null; }
     localStorage.setItem('spiewnik_sync_code', code);
     await ensureAuth();
-    const ref = doc(fbDb, 'syncs', code);
-    const snap = await getDoc(ref);
+    const ref = fbApi.doc(fbDb, 'syncs', code);
+    const snap = await fbApi.getDoc(ref);
     if(snap.exists()){
       const remote = (snap.data() && snap.data().playlists) || [];
       localStorage.setItem('spiewnik_playlists', JSON.stringify(remote));
       onRemoteUpdate(remote);
     } else {
       const local = JSON.parse(localStorage.getItem('spiewnik_playlists') || '[]');
-      await setDoc(ref, { playlists: local, updatedAt: Date.now() });
+      await fbApi.setDoc(ref, { playlists: local, updatedAt: Date.now() });
     }
-    syncUnsub = onSnapshot(ref, (snap2) => {
+    syncUnsub = fbApi.onSnapshot(ref, (snap2) => {
       if(snap2.metadata.hasPendingWrites) return;
       const remote = (snap2.data() && snap2.data().playlists) || [];
       localStorage.setItem('spiewnik_playlists', JSON.stringify(remote));
@@ -575,9 +794,11 @@
     const code = getSyncCode();
     if(!code) return;
     try {
+      const ok = await loadFirebase();
+      if(!ok) return;
       await ensureAuth();
-      const ref = doc(fbDb, 'syncs', code);
-      await setDoc(ref, { playlists: list, updatedAt: Date.now() });
+      const ref = fbApi.doc(fbDb, 'syncs', code);
+      await fbApi.setDoc(ref, { playlists: list, updatedAt: Date.now() });
     } catch(e){ /* offline / blocked - local copy already saved, will retry on next change */ }
   }
 
@@ -585,7 +806,9 @@
 (function(){
   const SONGS = [
   { title: "Adorujmy Najwyższego - AdoNaj",
-    body: `a F G C
+    body: `
+	158 BPM 3/4
+	a F G C
 Adorujmy Najwyższego
 F G C G F
 Boga Ojca Stworzyciela wszystkiego
@@ -595,9 +818,54 @@ F G C G F
 Jego Syna Zbawiciela naszego
 a G C   F G C
 Adorujmy Najwyższego
-F G C 
+F G C G C
 Ducha Ognia Parakleta, Świętego
 
+Adorujmy Najwyższego
+F G C G F
+Boga Ojca Stworzyciela wszystkiego
+a F G C
+Adorujmy Najwyższego
+F G C G F
+Jego Syna Zbawiciela naszego
+a G C   F G C
+Adorujmy Najwyższego
+F G C G C
+Ducha Ognia Parakleta, Świętego
+
+[bridge]
+a G
+Boże Ojcze – uwielbiamy Cię
+a G
+Jezu Chryste – uwielbiamy Cię
+ F E a
+Duchu Święty uwielbiamy Cię!
+
+a G
+Boże Ojcze – uwielbiamy Cię
+a G
+Jezu Chryste – uwielbiamy Cię
+ F E a
+Duchu Święty uwielbiamy Cię!
+a G
+Boże Ojcze – uwielbiamy Cię
+a G
+Jezu Chryste – uwielbiamy Cię
+ F E a
+Duchu Święty uwielbiamy Cię!
+
+[chorus]
+Adorujmy Najwyższego
+F G C G F
+Boga Ojca Stworzyciela wszystkiego
+a F G C
+Adorujmy Najwyższego
+F G C G F
+Jego Syna Zbawiciela naszego
+a G C   F G C
+Adorujmy Najwyższego
+F G C G C
+Ducha Ognia Parakleta, Świętego
 
 ` },
   { title: "Albowiem tak Bóg umiłował świat",
@@ -912,38 +1180,22 @@ Błogosławieni miłosierni,
 E               H          Fis
 albowiem oni miłosierdzia dostąpią!` },
   { title: "Błogosławieństwo",
-    body: `H                  E/H          H/Dis
+    body: `
+	140 BPM
+	H                  E/H          
 Niech Pan Cię strzeże i błogosławi 
-                       Fissus4               gis
+H                      Fissus4                
 Rozjaśni oblicze nad tobą w miłosierdziu swym 
-                  E/H     H/Dis
+gis               E/H     H
 Niech twarz obróci ku tobie
      Fissus4       H
 I pokój swój da
 
-H                  E/H          H/Dis
+H                  E/H          
 Niech Pan Cię strzeże i błogosławi 
-                       Fissus4               gis
+H                      Fissus4                
 Rozjaśni oblicze nad tobą w miłosierdziu swym 
-                  E/H     H/Dis
-Niech twarz obróci ku tobie
-     Fissus4       H
-I pokój swój da
-
-gis      E
-A - a - amen
-H   Fis
-A - amen
-gis      E
-A - a - amen
-H   Fis
-A - amen
-
-H                  E/H          H/Dis
-Niech Pan Cię strzeże i błogosławi 
-                       Fissus4               gis
-Rozjaśni oblicze nad tobą w miłosierdziu swym 
-                  E/H     H/Dis
+gis               E/H     H
 Niech twarz obróci ku tobie
      Fissus4       H
 I pokój swój da
@@ -956,6 +1208,24 @@ gis      E
 A - a - amen
 H   Fis
 A - amen
+
+H                  E/H          
+Niech Pan Cię strzeże i błogosławi 
+H                      Fissus4                
+Rozjaśni oblicze nad tobą w miłosierdziu swym 
+gis               E/H     H
+Niech twarz obróci ku tobie
+     Fissus4       H
+I pokój swój da
+
+gis      E
+A - a - amen
+H   Fis
+A - amen
+gis      E
+A - a - amen
+H   Fis
+A - amen
 gis      E
 A - a - amen
 H   Fis
@@ -965,58 +1235,115 @@ A - a - amen
 H   Fis
 A - amen
 
-       gis
+gis
 Niechaj Bóg cię błogosławi
    E
 Po tysięczne pokolenie
-    H
+H
 Twą rodzinę i twe dzieci
        Fis/Ais
 Twoje wnuki i ich dzieci
 
-       gis
+gis
 Niechaj Bóg cię błogosławi
    E
 Po tysięczne pokolenie
-    H
+H
 Twą rodzinę i twe dzieci
        Fis/Ais
 Twoje wnuki i ich dzieci
 
-       gis
+gis
 Niechaj Bóg cię błogosławi
    E
 Po tysięczne pokolenie
-    H
+H
 Twą rodzinę i twe dzieci
        Fis/Ais
 Twoje wnuki i ich dzieci
 
-       gis
+gis
 Niechaj Bóg cię błogosławi
    E
 Po tysięczne pokolenie
-    H
+H
 Twą rodzinę i twe dzieci
        Fis/Ais
 Twoje wnuki i ich dzieci
 
-       gis
+gis
 Niech obecność Jego Ducha
      E
 Cię otacza i prowadzi
-    H
+H
 Będzie w tobie i przy tobie
         Fis/Ais
 On jest z tobą
         Fis
 On jest z tobą
 
-    gis
+gis
 O poranku i wieczorem
         E
 W twoim przyjściu, w twoim wyjściu
+H
+W twoim płaczu i radości
+        Fis/Ais
+On jest z tobą
+      Fis
+I dla ciebie
+
+        gis   
+On jest z tobą i dla ciebie
+       E 
+On jest z tobą i dla ciebie
         H
+On jest z tobą i dla ciebie
+       Fis
+On jest z tobą
+
+gis      E
+A - a - amen
+H   Fis
+A - amen
+gis      E
+A - a - amen
+H   Fis
+A - amen
+gis      E
+A - a - amen
+H   Fis
+A - amen
+gis      E
+A - a - amen
+H   Fis
+A - amen
+
+gis
+Niechaj Bóg cię błogosławi
+   E
+Po tysięczne pokolenie
+H
+Twą rodzinę i twe dzieci
+       Fis/Ais
+Twoje wnuki i ich dzieci
+
+gis
+Niech obecność Jego Ducha
+     E
+Cię otacza i prowadzi
+H
+Będzie w tobie i przy tobie
+        Fis/Ais
+On jest z tobą
+        Fis
+On jest z tobą
+
+gis
+O poranku i wieczorem
+        E
+W twoim przyjściu, w twoim wyjściu
+H
 W twoim płaczu i radości
         Fis/Ais
 On jest z tobą
@@ -1040,62 +1367,194 @@ gis      E
 A - a - amen
 H   Fis
 A - amen
-gis      E
+
+
+Capo 4
+
+G                  C/G          
+Niech Pan Cię strzeże i błogosławi 
+G                      Disus4                
+Rozjaśni oblicze nad tobą w miłosierdziu swym 
+e               C/G     G
+Niech twarz obróci ku tobie
+     Disus4       G
+I pokój swój da
+
+G                  C/G          
+Niech Pan Cię strzeże i błogosławi 
+G                      Disus4                
+Rozjaśni oblicze nad tobą w miłosierdziu swym 
+e               C/G     G
+Niech twarz obróci ku tobie
+     Disus4       G
+I pokój swój da
+
+e        C
 A - a - amen
-H   Fis
+G   D
 A - amen
-gis      E
+e        C
 A - a - amen
-H   Fis
+G   D
 A - amen
 
-       gis
+G                  C/G          
+Niech Pan Cię strzeże i błogosławi 
+G                      Disus4                
+Rozjaśni oblicze nad tobą w miłosierdziu swym 
+e               C/G     G
+Niech twarz obróci ku tobie
+     Disus4       G
+I pokój swój da
+
+e        C
+A - a - amen
+G   D
+A - amen
+e        C
+A - a - amen
+G   D
+A - amen
+e        C
+A - a - amen
+G   D
+A - amen
+e        C
+A - a - amen
+G   D
+A - amen
+
+e
 Niechaj Bóg cię błogosławi
-   E
+   C
 Po tysięczne pokolenie
-    H
+G
 Twą rodzinę i twe dzieci
-       Fis/Ais
+       D/Fis
 Twoje wnuki i ich dzieci
 
-       gis
+e
+Niechaj Bóg cię błogosławi
+   C
+Po tysięczne pokolenie
+G
+Twą rodzinę i twe dzieci
+       D/Fis
+Twoje wnuki i ich dzieci
+
+e
+Niechaj Bóg cię błogosławi
+   C
+Po tysięczne pokolenie
+G
+Twą rodzinę i twe dzieci
+       D/Fis
+Twoje wnuki i ich dzieci
+
+e
+Niechaj Bóg cię błogosławi
+   C
+Po tysięczne pokolenie
+G
+Twą rodzinę i twe dzieci
+       D/Fis
+Twoje wnuki i ich dzieci
+
+e
 Niech obecność Jego Ducha
-     E
+     C
 Cię otacza i prowadzi
-    H
+G
 Będzie w tobie i przy tobie
-        Fis/Ais
+        D/Fis
 On jest z tobą
-        Fis
+        D
 On jest z tobą
 
-    gis
+e
 O poranku i wieczorem
-        E
+        C
 W twoim przyjściu, w twoim wyjściu
-        H
+G
 W twoim płaczu i radości
-        Fis/Ais
+        D/Fis
 On jest z tobą
-      Fis
+      D
 I dla ciebie
 
-        gis                E
+        e   
 On jest z tobą i dla ciebie
-        H                  Fis
+        C 
 On jest z tobą i dla ciebie
-        gis                E
+        G  
 On jest z tobą i dla ciebie
-        H                  Fis
+        D
 On jest z tobą
 
-gis      E
+e        C
 A - a - amen
-H   Fis
+G   D
 A - amen
-gis      E
+e        C
 A - a - amen
-H   Fis
+G   D
+A - amen
+e        C
+A - a - amen
+G   D
+A - amen
+e        C
+A - a - amen
+G   D
+A - amen
+
+e
+Niechaj Bóg cię błogosławi
+   C
+Po tysięczne pokolenie
+G
+Twą rodzinę i twe dzieci
+       D/Fis
+Twoje wnuki i ich dzieci
+
+e
+Niech obecność Jego Ducha
+     C
+Cię otacza i prowadzi
+G
+Będzie w tobie i przy tobie
+        D/Fis
+On jest z tobą
+        D
+On jest z tobą
+
+e
+O poranku i wieczorem
+        C
+W twoim przyjściu, w twoim wyjściu
+G
+W twoim płaczu i radości
+        D/Fis
+On jest z tobą
+      D
+I dla ciebie
+
+        e                  C
+On jest z tobą i dla ciebie
+        G                  D
+On jest z tobą i dla ciebie
+        e                  C
+On jest z tobą i dla ciebie
+        G                  D
+On jest z tobą
+
+e        C
+A - a - amen
+G   D
+A - amen
+e        C
+A - a - amen
+G   D
 A - amen` },
   { title: "Bóg nad swym ludem zmiłował się",
     body: `1.
@@ -1613,7 +2072,15 @@ Cokolwiek jest już za mną i to wszystko co przede mną
 G D A D
 Wiem, będę śpiewać, gdy nadejdzie zmrok.
 
-	Ref. Duszo ma..
+	Ref. 
+	G D A h
+Ref. Duszo ma, Pana chwal, oddaj Bogu cześć,
+G D A
+Świętemu śpiewaj pieśń.
+G h G A h
+Z mocą wywyższaj go, duszo ma,
+G A D
+Uwielbiam Boże, Cię.
 
 G D A h
 2.Bogaty w miłość gniew oddalasz Panie
@@ -1624,7 +2091,15 @@ Ze względu na Twą dobroć będę śpiewać Tobie pieśni
 G D A D
 Wiele powodów by uwielbiać Cię
 
-	Ref. Duszo ma...
+	Ref. 
+	G D A h
+Ref. Duszo ma, Pana chwal, oddaj Bogu cześć,
+G D A
+Świętemu śpiewaj pieśń.
+G h G A h
+Z mocą wywyższaj go, duszo ma,
+G A D
+Uwielbiam Boże, Cię.
 
 G D A h
 3.Przyjdzie dzień gdy bez sił zostanę
@@ -1634,7 +2109,16 @@ G D A h
 Dusza ma będzie już na zawsze Cię uwielbiać
 G D A D
 W wieczności z Tobą piękna zabrzmi pieśń
-	Ref. Duszo ma…` },
+
+	Ref.
+	G D A h
+Ref. Duszo ma, Pana chwal, oddaj Bogu cześć,
+G D A
+Świętemu śpiewaj pieśń.
+G h G A h
+Z mocą wywyższaj go, duszo ma,
+G A D
+Uwielbiam Boże, Cię.` },
   { title: "Dzięki za Twój Krzyż",
     body: `D A h
 Dzięki za Twój Krzyż,
@@ -1664,7 +2148,7 @@ Zmiłuj się nad nami!
 
 d A d F C F F7
 Ref. Tobą mury rozwalać, Tobą się osłonić,
-B F C B F C A7||A7 d
+B F C B F C A7 (d)
 Tobie się ufnym sercem z miłością pokłonić. /2x
 
 2.
@@ -2045,6 +2529,137 @@ F d e F
 W morzu miłości serca uleczy dzisiaj Pan
 C F
 Panie Jezu, przyjdź  x4` },
+	  { title: "Kenoza - AdoNaj",
+    body: `
+	120 BPM Capo 1
+	a
+On
+C
+Przedwieczne Słowo i Bóg
+G
+Pozostawił majestat
+E
+By stać się sługą dla sług
+
+a
+On
+C
+Przedwieczne Słowo i Pan
+G
+Ogołocił sam siebie
+E
+I stał się podobny nam
+
+a
+On
+C
+Przedwieczne Słowo i Król
+G
+Aż do śmierci posłuszny
+E
+Na krzyżu spłacił mój dług
+
+REFREN
+        F
+Dlatego Bóg Go nad wszystko wywyższył 
+        C
+Darował imię, które ponad wszystkie jest
+           d
+By w Imię Jezus zgięło się każde kolano 
+          G
+I wszelki język oddał Jemu cześć!
+
+        F
+Dlatego Bóg Go nad wszystko wywyższył 
+        C
+Darował imię, które ponad wszystkie jest
+           d
+By w Imię Jezus zgięło się każde kolano 
+          G
+I wszelki język oddał Jemu cześć!
+
+        F
+Dlatego Bóg Go nad wszystko wywyższył 
+        C
+Darował imię, które ponad wszystkie jest
+           d
+By w Imię Jezus zgięło się każde kolano 
+          G
+I wszelki język oddał Jemu cześć!
+
+a C
+Jezus!
+G a
+Jezus!
+a C
+Jezus!
+G a
+Jezus!
+
+
+b
+On
+Des
+Przedwieczne Słowo i Bóg
+As
+Pozostawił majestat
+F
+By stać się sługą dla sług
+
+b
+On
+Des
+Przedwieczne Słowo i Pan
+As
+Ogołocił sam siebie
+F
+I stał się podobny nam
+
+b
+On
+Des
+Przedwieczne Słowo i Król
+As
+Aż do śmierci posłuszny
+F
+Na krzyżu spłacił mój dług
+
+REFREN
+        Fis
+Dlatego Bóg Go nad wszystko wywyższył 
+        Des
+Darował imię, które ponad wszystkie jest
+           es
+By w Imię Jezus zgięło się każde kolano 
+          As
+I wszelki język oddał Jemu cześć!
+
+        Fis
+Dlatego Bóg Go nad wszystko wywyższył 
+        Des
+Darował imię, które ponad wszystkie jest
+           es
+By w Imię Jezus zgięło się każde kolano 
+          As
+I wszelki język oddał Jemu cześć!
+
+        Fis
+Dlatego Bóg Go nad wszystko wywyższył 
+        Des
+Darował imię, które ponad wszystkie jest
+           es
+By w Imię Jezus zgięło się każde kolano 
+          As
+I wszelki język oddał Jemu cześć!
+
+b Des
+Jezus!
+As b
+Jezus!
+b Des
+Jezus!
+As b
+Jezus!` },
   { title: "Lud Twój, Panie, lud pielgrzymi",
     body: `E         H         cis
 Ref. Lud Twój, Panie, lud pielgrzymi
@@ -2551,15 +3166,18 @@ Niech będzie chwała w każdy czas
 Niech on wieczystym życiem swym
 W ojczyźnie rajskiej darzy nas. Amen` },
   { title: "Objawiaj się wśród nas",
-    body: `[Intro]
+    body: ` 70 BPM
+	[Intro]
 C D h e
 
 [Chorus]
-   C      D        h
-Yahweh, Rafa, Elohim
-   e       C       D
-Shaddai, Jireh, Adonai
-                   e
+   C     				     D       			h
+Yahweh , 				    Rafa, 			Elohim
+<Jestem, który Jestem> <Pan, który uzdrawia> <Bóg>
+   e      		 C       				D
+Shaddai, 		Jireh, 				Adonai
+<Wszechmocny> <Pan się zatroszczy> <mój Pan>        
+e
 Objawiaj się wśród nas
 
 [Verse 1]
@@ -2787,54 +3405,74 @@ Gdzie pójdziesz Ty
 h fis D A G (A)
 Ja pójdę też` },
   { title: "Pan Bóg Izraela",
-    body: `| Am | F | C |
- Nowe słońce wzejdzie nam
+    body: `ZWROTKA 1
+a     F       C
+Nowe słońce wzejdzie nam
+a       F        C
 Z domu Dawida zbawczy blask
+a        F       C
 Zniknie mrok i śmierci cień
+a         F       C
 Nadejdzie Pana wielki dzień
 
-| Am | F | C |
-Przedziwny doradca 
-| Am | F | C |
-Bóg mocny, Odwieczny ojciec 
-| Am | F | C | Em/H |
-Książę pokoju 
-| Am | F | C |
-Wielkie będzie Jego panowanie 
-| Am | F | C |
-W pokoju bez granic 
+ZWROTKA 2
+a         F        
+Przedziwny doradca
+      C
+Bóg mocny, Odwieczny ojciec
+a       F        C    e/H
+Książę pokoju
+a              F          C
+Wielkie będzie Jego panowanie
+a         F      C
+W pokoju bez granic
 
-| Am | F7+ | C | G |
+REFREN
+a              F7+         C       G
 Błogosławiony Pan Bóg Izraela
+a          F7+               C            G
 Stworzenie wiecznie będzie Tobie śpiewać
+a              F7+         C       G
 Błogosławiony Pan Bóg Izraela
+a           F7+            C           G
 Wraz z aniołami wywyższamy króla Nieba
 
-| Am |
-Alfa, Omega 
-| F |
-Pierwszy i ostatni 
-| C | Em/H |
-Początek i koniec 
-| Am | F |
+BRIDGE
+a
+Alfa, Omega
+F
+Pierwszy i ostatni
+C         e/H
+Początek i koniec
+a                     F
 Nadeszło zbawienie, potęga i panowanie
-| C | Em |
-Lwa z rodu Judy 
+C           e
+Lwa z rodu Judy
 
-Am | F7+ | C | G |
+REFREN
+a              F7+         C       G
 Błogosławiony Pan Bóg Izraela
+a          F7+               C            G
 Stworzenie wiecznie będzie Tobie śpiewać
+a              F7+         C       G
 Błogosławiony Pan Bóg Izraela
+a           F7+            C           G
 Wraz z aniołami wywyższamy króla Nieba
 
-Hosanna 		| Am | G/H | C |
-Synowi Dawida 	| F6 |
-Hosanna 		| Am | G/H | C |
+CODA
+a        G/H C   F6
+Hosanna Synowi Dawida
+a        G/H C
+Hosanna
 
- | Am | F | C |
+ZWROTKA 3
+a     F       C
 Nowe słońce wzeszło nam
+a       F        C
 Z domu Dawida zbawczy blask
+a        F       C
 Zniknął mrok i śmierci cień
+a         F       C
 Nadejdzie Pana wielki dzień` },
   { title: "Pan jest mocą swojego ludu",
     body: `
@@ -3539,6 +4177,45 @@ Gdy o Jego ramię oprę się.
 W Nim nadzieję mam, uleciał strach.
 On najbliżej jest, zawsze troszczy się.
 Królów Król, z nami Bóg. /2x		 Jezus. /4x` },
+	    { title: "Psalm 100 - AdoNaj",
+    body: `C G a G
+Wykrzykujcie na cześć Pana,
+wszystkie ziemie;
+Wśród radości przed obliczem Pana!
+służcie Panu z weselem!
+
+Ref:
+Albowiem dobry jest Pan,
+łaskawość Jego poprzez wieki trwa,
+Albowiem dobry jest Pan,
+a wierność Jego poprzez pokolenia trwa.
+
+
+To wiedzcie, że tylko Pan jest Bogiem:
+On nas stworzył i uczynił pięknym wszystko, 
+Więc my jesteśmy Jego własnością,
+Jego ludem, owcami Jego pastwiska.
+
+Ref:
+Albowiem dobry jest Pan,
+łaskawość Jego poprzez wieki trwa,
+Albowiem dobry jest Pan,
+a wierność Jego poprzez pokolenia trwa.
+
+
+
+[bridge]
+Wstępujcie w Jego bramy 
+wśród hymnów, wśród dziękczynienia!
+Wstępujcie w Jego przedsionki;
+chwalcie Go i wzywajcie Jego imienia!
+
+Ref:
+Albowiem dobry jest Pan,
+łaskawość Jego poprzez wieki trwa,
+Albowiem dobry jest Pan,
+a wierność Jego poprzez pokolenia trwa.
+` },
   { title: "Psalm 126 - niemaGotu",
     body: `
 	130 BPM
@@ -3549,6 +4226,14 @@ Gdy Pan odmienił los Syjonu, wydawało się nam, że śnimy!
 Usta nasze były pełne śmiechu, a język śpiewał z radości!
 
 Ref.
+H               A
+Mówiono wtedy między narodami:
+E              H
+„Wielkie rzeczy im Pan uczynił!”
+fis           A
+Pan uczynił nam wielkie rzeczy
+E   H          
+i radość nas ogarnęła!
 H               A
 Mówiono wtedy między narodami:
 E              H
@@ -3568,7 +4253,15 @@ powrócą z radością, niosąc swoje snopy.
 
 Ref.
 H               A
-Powiedzą wtedy między narodami:
+Mówiono wtedy między narodami:
+E              H
+„Wielkie rzeczy im Pan uczynił!”
+fis           A
+Pan uczynił nam wielkie rzeczy
+E   H          
+i radość nas ogarnęła!
+H               A
+Mówiono wtedy między narodami:
 E              H
 „Wielkie rzeczy im Pan uczynił!”
 fis           A
@@ -3604,7 +4297,7 @@ E              H
 „Wielkie rzeczy im Pan uczynił!”
 fis           A
 Pan uczynił nam wielkie rzeczy
-E   H          fis cis H A E
+E   H          
 i radość nas ogarnęła!
 
 H                       A
@@ -3613,8 +4306,25 @@ E              H
 „Wielkie rzeczy im Pan uczynił!”
 fis           A
 Pan uczynił nam wielkie rzeczy
+E   H         
+i radość nas ogarnęła!
+H               A
+Mówiono wtedy między narodami:
+E              H
+„Wielkie rzeczy im Pan uczynił!”
+fis           A
+Pan uczynił nam wielkie rzeczy
+E   H          
+i radość nas ogarnęła!
+H               A
+Mówiono wtedy między narodami:
+E              H
+„Wielkie rzeczy im Pan uczynił!”
+fis           A
+Pan uczynił nam wielkie rzeczy
 E   H          fis cis H A E
-i radość nas ogarnęła!` },
+i radość nas ogarnęła!
+` },
   { title: "Psalm 148",
     body: `Ref.
 a   G   F   E a
@@ -3991,287 +4701,308 @@ Tak mnie wypal, Panie,
 C d A
 Byś został tylko Ty, byś został tylko Ty jedynie Ty!` },
   { title: "Taki jesteś Ty (Wszechmocny)",
-    body: `Wstęp:
-D A E fis
-D A E fis
-Zwrotka 1:
-D A
+    body: `
+	68 BPM
+	
+	WSTĘP
+G D A h
+G D A h
+
+ZWROTKA 1
+G          D
 Jesteś tu, jesteś pośród nas
-E fis
+A          h
 Uwielbiam Cię, uwielbiam Cię
-D A
+G          D
 Jesteś tu, działasz w każdym z nas
-E fis
+A          h
 Uwielbiam Cię, uwielbiam Cię
-D A
+G          D
 Jesteś tu, jesteś pośród nas
-E fis
+A          h
 Uwielbiam Cię, uwielbiam Cię
-D A
+G          D
 Jesteś tu, działasz w każdym z nas
-E fis
+A          h
 Uwielbiam Cię, uwielbiam Cię
-Refren:
-D
+
+REFREN
+G
 Jesteś Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty
-D
+G
 Jesteś Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty
-Zwrotka 2:
-D A
+
+ZWROTKA 2
+G          D
 Jesteś tu i dotykasz serc
-E fis
+A          h
 Uwielbiam Cię, uwielbiam Cię
-D A
+G          D
 Jesteś tu, leczysz każde z serc
-E fis
+A          h
 Uwielbiam Cię, uwielbiam Cię (jesteś tu)
-D A
+G          D
 Jesteś tu, zmieniasz życie me (zmieniasz życie me)
-E
+A
 Uwielbiam Cię (uwielbiam Cię)
-fis
+h
 Uwielbiam Cię (uwielbiam Cię)
-D A
+G          D
 Jesteś tu i odnawiasz mnie
-E fis
+A          h
 Uwielbiam Cię, uwielbiam Cię
-Refren:
-D
+
+REFREN
+G
 Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty (Ty jesteś... Ty jesteś!)
-D
+G
 Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty (jesteś!)
-D
+G
 Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty (jesteś Ty jesteś!)
-D
+G
 Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty
-Coda 1:
+
+CODA 1
+G
+Taki jesteś Ty (taki jesteś)
 D
 Taki jesteś Ty (taki jesteś)
 A
-Taki jesteś Ty (taki jesteś)
-E
 Taki jesteś Ty
-fis
+h
 Taki jesteś Ty (mój Jezu)
+G
+Taki jesteś Ty
 D
 Taki jesteś Ty
 A
 Taki jesteś Ty
-E
+h
 Taki jesteś Ty
-fis
-Taki jesteś Ty
-D A E fis
+
+G D A h
 Mój Jezu, Mój Jezu, taki jesteś
-Bridge: (x4)
-D
+
+BRIDGE
+G
 Choć czasem tego nie widzę, Ty działasz
-A
+D
 Choć czasem tego nie czuję, Ty działasz
-E
+A
 Nie zmieniasz się i wiem, że wciąż działasz
-fis
-Nie zmieniasz się i wiem, że wciąż działasz
-Refren:
-D
+h
+Nie zmieniasz się i wiem, że wciąż działasz   x4
+
+REFREN
+G
 Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty, taki jesteś, Ty jesteś!
-D
+G
 Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty
-Coda 2:
+
+CODA 2
+G
+Taki jesteś Ty
 D
 Taki jesteś Ty
 A
 Taki jesteś Ty
-E
-Taki jesteś Ty
-fis
+h
 Taki jesteś Ty mój Jezu
-D
+G
 Taki jesteś Ty
-A
+D
 Taki jesteś Ty (jesteś Ty)
-E
+A
 Taki jesteś Ty
-fis
+h
 Taki jesteś Ty (Ty jesteś)
-Refren:
-D
+
+REFREN
+G
 Jesteś Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis
+h
 Taki jesteś Ty
-D
+G
 Jesteś Wszechmocny, Ty czynisz cuda
-A E
+D        A
 Jesteś drogą, światłem w ciemności, o tak
-fis D
+h G
 Taki jesteś Ty` },
   { title: "To i ja - Hillsong UNITED",
     body: `
 	65 BPM
 	ZWROTKA 1
-E
+D
 Stwórco istnienia
-gis
+fis
 Zanim był czas
-Fis E (gis Fis)
+E   D    (fis E)
 Zanim rozpoczął się świat
-E
+D
 Gdzie chaos i ciemność
-gis
+fis
 Na dźwięk Twoich słów
-Fis E (H Fis)
+E   D    (A E)
 Nagle pojawił się blask
 
 REFREN 1
-H
+A
 I na Twój głos
-H gis Fis
+A   fis  E
 Galaktyk sto miliardów rodzi się
-Fis H E
+E   A   D
 A oddech Twój początkiem planet jest
-gis Fis H
+fis   E   A
 Jeśli gwiazdy Ciebie wielbią, to i ja
-H gis Fis
+
+A   fis  E
 Widzę serce Twoje w każdym z Twoich dzieł
-Fis
-Światło wszystkich gwiazd
-H E
-Odbiciem łaski jest
-gis Fis H
-Jeśli wszechświat Ciebie chwali, to i ja
-H gis Fis
-To i ja
-(Fis H)
-ZWROTKA 2
 E
+Światło wszystkich gwiazd
+A   D
+Odbiciem łaski jest
+fis   E   A
+Jeśli wszechświat Ciebie chwali, to i ja
+A   fis  E
+To i ja   (E A)
+
+ZWROTKA 2
+D
 Boże obietnic
-gis
+fis
 Twe słowo ma moc
-Fis E (gis Fis)
+E   D    (fis E)
 Na wieki nie zmieni się już
-E gis
-Ty raz przemówiłeś nauka i świat
-Fis E (H Fis)
+D          fis
+Ty raz przemówiłeś, nauka i świat
+E   D    (A E)
 Idą za dźwiękiem Twych słów
 
 REFREN 2
-H
+A
 I na Twój głos
-H gis Fis
+A   fis  E
 Ze sto miliardów stworzeń bierze wdech
-Fis H E
+E   A   D
 By Twój odwieczny plan wypełnił się
-gis Fis H
+fis   E   A
 Jeśli to objawia Ciebie, to i ja
-H gis Fis
+
+A   fis  E
 Widzę serce Twoje w każdym z Twoich dzieł
-Fis
+E
 Niebo pełne barw
-H E
+A   D
 Obrazem łaski jest
-gis Fis H
+fis   E   A
 Jeśli wszystko słucha Ciebie, to i ja
-H gis Fis (Fis H)
-To i ja
-BRIDGE
-E gis Fis
-Jeśli gwiazdy Ciebie wielbią, to i ja
-E gis Fis
-Jeśli góry się kłaniają, to i ja
-E gis Fis
-Jeśli morza głoszą chwałę, to i ja
-E gis Fis
-Jeśli wszystko Cię wywyższa, Stwórco nasz
-E gis Fis
+A   fis  E     (E A)
 To i ja
 
-E gis Fis
+BRIDGE
+D     fis E
+Jeśli gwiazdy Ciebie wielbią, to i ja
+D     fis E
+Jeśli góry się kłaniają, to i ja
+D     fis E
+Jeśli morza głoszą chwałę, to i ja
+D     fis E
+Jeśli wszystko Cię wywyższa, Stwórco nasz
+D     fis E
+To i ja
+
+D     fis E
 Jeśli wiatr Ci jest posłuszny, to i ja
-E gis Fis
+D     fis E
 Jeśli kamień głos podnosi, to i ja
-E gis Fis
+D     fis E
 Wiem, że więcej niż to wszystko jesteś wart
-E gis Fis
+D     fis E
 Więc zaśpiewam na Twą chwałę jeszcze raz
-E gis Fis
-ooo	x2
-Uwielbiony bądź, Błogosławiony bądź x2
+
+D  fis  E
+ooo          x2
+
+Uwielbiony bądź, Błogosławiony bądź   x2
 
 ZWROTKA 3
-E gis Fis
+D          fis  E
 Boże zbawienia
 Znalazłeś mnie, gdy
-E gis Fis
+D          fis  E
 Zgubiła mnie duma i grzech
-E gis Fis
+D          fis  E
 Na górze cierpienia
 Jedyny Twój Syn
-Był za mnie wydany na śmierć 				E ( H Fis)
+Był za mnie wydany na śmierć   D (A E)
 
 REFREN 3
-H
+A
 I na Twój głos
-H gis Fis
+A   fis  E
 Ze sto miliardów błędów znika gdzieś
-Fis H E
+E   A   D
 Życia zrzekłeś się, by mi darować je
-gis Fis H
+fis   E   A
 Jeśli Ty powstałeś z martwych, to i ja
-H gis Fis
+
+A   fis  E
 Widzę serce Twoje w każdej z Twoich ran
-Fis H E
+E   A   D
 Arcydzieło Twe na imię Miłość ma
-gis Fis H
+fis   E   A
 Jeśli Ty się uniżyłeś, to i ja
-H
+
+A
 Widzę serce Twe
-gis Fis
+fis E
 W miliardach wszystkich nas
-Fis
+E
 Każdy cenny jest
-H E
+A   D
 Imiona wszystkich znasz
-gis Fis H
+fis   E   A
 Jeśli żyłeś, żeby kochać, to i ja
-H gis Fis
+
+A   fis  E
 Wiem, że zrobiłbyś to wszystko jeszcze raz
-Fis H E
+E   A   D
 Ukochałeś nas już zanim powstał świat
-gis Fis H
+fis   E   A
 Ty byś wszystko oddał za jednego z nas` },
   { title: "Ty obecny wśród nas - Mocni w Duchu",
     body: `
@@ -4503,7 +5234,9 @@ Chcę Ci dziękować ze wszystkich sił
 e D
 Dajesz mi siebie bym na wieki żył.` },
   { title: "Wdzięczność (Gratitude) - Brandon Lake",
-    body: ` ZWROTKA 1
+    body: ` 
+	50 BPM Capo 1
+	ZWROTKA 1
 F
 Jakich użyć słów
 d
@@ -4591,9 +5324,138 @@ Prócz serca, co śpiewa Mu
 B d C F
 Alleluja, alleluja
 
-OUTRO
-F Es B b
-(Alleluja)` },
+
+ZWROTKA 1
+Fis
+Jakich użyć słów
+dis
+Jak wyrazić to
+Cis
+Jak opisać mam
+H
+Całą wdzięczność mą
+
+ZWROTKA 2
+Fis
+Mogę śpiewać Ci
+dis
+Co dzień inną pieśń
+Cis
+Chociaż czuję, że
+H
+To tak mała rzecz
+
+REFREN
+Fis
+Więc podnoszę me ręce
+Cis
+I znowu oddaję Ci cześć
+Bo wszystko, co mam dziś
+H dis Cis
+To alleluja, alleluja
+Fis
+Nie wiem, co mogę dać
+Cis
+Z czego mógłby ucieszyć się Król
+Prócz serca, co śpiewa Mu
+H dis Cis Fis
+Alleluja, alleluja
+
+ZWROTKA 3
+Fis
+To, co mogę dać
+dis
+To ta jedna rzecz
+Cis
+Z całych moich sił
+H
+Będę wielbić Cię
+
+REFREN
+Fis
+Więc podnoszę me ręce
+Cis
+I znowu oddaję Ci cześć
+Bo wszystko, co mam dziś
+H dis Cis
+To alleluja, alleluja
+Fis
+Nie wiem, co mogę dać
+Cis
+Z czego mógłby ucieszyć się Król
+Prócz serca, co śpiewa Mu
+H dis Cis Fis
+Alleluja, alleluja
+
+BRIDGE
+Fis
+O, duszo ma, nie milcz już więcej
+Cis
+I podnieś swój głos, bo lew w tobie drzemie
+H
+Twój Bóg dał ci moc
+Fis Cis
+Powstań, uwielbij Go   x2
+
+REFREN
+Fis
+Więc podnoszę me ręce
+Cis
+I znowu oddaję Ci cześć
+Bo wszystko, co mam dziś
+H dis Cis
+To alleluja, alleluja
+Fis
+Nie wiem, co mogę dać
+Cis
+Z czego mógłby ucieszyć się Król
+Prócz serca, co śpiewa Mu
+H dis Cis Fis
+Alleluja, alleluja` },
+	  
+  { title: "Widzę dom",
+    body: `C                    F        C
+1.Widzę dom, w nim otwarte drzwi
+  a       G        F
+Ojciec czeka na mnie w nich
+  C                F     C
+Woła mnie, wiem że mogę wejść
+  a     G       F
+On opatrzy rany me
+  a     G        F
+Wiele bitew za mną jest
+
+     C            F
+Ref. To czas by ucztować
+                  a
+     W sercu mam pokój
+                 G
+     Gdy wokół wojna
+                 F
+     Na oczach moich wrogów
+              C
+     Pan zastawia stół
+
+     C            F
+     To czas by ucztować
+                  a
+     W sercu mam pokój
+                 G
+     Gdy wokół wojna
+                 F
+     Na oczach moich wrogów
+              C
+     Pan zastawia stół
+
+BRIDGE
+C                        F
+Strach nie ma wstępu do tego domu
+a                      F
+Oskarżyciele nie mają głosu
+a                   F           C
+Pan sam pokonał moich wrogów
+` },
+	  
   { title: "Wielbię Ciebie",
     body: `Wielbię Ciebie w każdym momencie,
 O żywy chlebie nasz w tym sakramencie,
@@ -4924,6 +5786,7 @@ e D G a H7
 Już nie będę się bał – cóż może zrobić mi śmierć?
 e D G a H7
 Nie, nie lękam się i śpiewam chwały pieśń.` }
+
 ];
 
   const listContainer = document.getElementById('listContainer');
@@ -4937,6 +5800,13 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
   const fontMinus = document.getElementById('fontMinus');
   const fontPlus = document.getElementById('fontPlus');
   const addToPlaylistBtn = document.getElementById('addToPlaylistBtn');
+  const songBodyWrap = document.getElementById('song-body-wrap');
+  const autoscrollToggleBtn = document.getElementById('autoscrollToggleBtn');
+  const autoscrollPanel = document.getElementById('autoscrollPanel');
+  const autoscrollCloseBtn = document.getElementById('autoscrollCloseBtn');
+  const autoscrollPlayBtn = document.getElementById('autoscrollPlayBtn');
+  const autoscrollSpeedSlider = document.getElementById('autoscrollSpeedSlider');
+  const autoscrollSpeedValue = document.getElementById('autoscrollSpeedValue');
 
   const tabSongs = document.getElementById('tabSongs');
   const tabPlaylists = document.getElementById('tabPlaylists');
@@ -4952,6 +5822,7 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
   const pldTitleBtn = document.getElementById('pldTitleBtn');
   const pldDeleteBtn = document.getElementById('pldDeleteBtn');
   const pldShareBtn = document.getElementById('pldShareBtn');
+  const pldExportBtn = document.getElementById('pldExportBtn');
   const viewerView = document.getElementById('viewer-view');
   const viewerTitle = document.getElementById('viewerTitle');
   const viewerSongsContainer = document.getElementById('viewerSongsContainer');
@@ -5055,6 +5926,7 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
     const elClosed = overlayStack.pop();
     if(elClosed){
       elClosed.classList.remove('open');
+      if(elClosed === detailView){ stopAutoscroll(); autoscrollPanel.classList.remove('open'); }
       if(elClosed === customDialogBackdrop && dialogResolve){
         const resolveFn = dialogResolve;
         const result = dialogPendingResult;
@@ -5137,6 +6009,8 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
       if(i < lines.length - 1) frag.appendChild(document.createTextNode('\n'));
     });
     songBody.appendChild(frag);
+    stopAutoscroll();
+    autoscrollPanel.classList.remove('open');
     document.getElementById('song-body-wrap').scrollTop = 0;
     openOverlay(detailView);
   }
@@ -5147,6 +6021,91 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
   });
 
   backBtn.addEventListener('click', goBack);
+
+  // ---------- Autoprzewijanie (auto-scroll while reading a song) ----------
+  // Speed is a 1-20 dial saved between sessions; internally mapped to
+  // pixels/second so the scroll stays smooth regardless of frame rate.
+  const AUTOSCROLL_SPEED_KEY = 'adonaj_autoscroll_speed_v1';
+  const AUTOSCROLL_PX_PER_LEVEL = 0.875; // level 1 -> 0.875px/s (very slow), level 20 -> 17.5px/s (fast) - 8x slower than before
+  let autoscrollSpeed = 10;
+  try {
+    const savedSpeed = parseInt(localStorage.getItem(AUTOSCROLL_SPEED_KEY), 10);
+    if(!isNaN(savedSpeed)) autoscrollSpeed = Math.min(20, Math.max(1, savedSpeed));
+  } catch(e){ /* localStorage unavailable - use default */ }
+  autoscrollSpeedSlider.value = autoscrollSpeed;
+  autoscrollSpeedValue.textContent = autoscrollSpeed;
+
+  let autoscrollActive = false;
+  let autoscrollRAF = null;
+  let autoscrollLastTs = null;
+  let autoscrollPos = 0; // our own float tracker - songBodyWrap.scrollTop itself rounds to whole
+                          // pixels, so accumulating fractional px directly on it loses the
+                          // remainder every frame at low speeds and stalls completely.
+
+  function autoscrollStep(ts){
+    if(!autoscrollActive) return;
+    if(autoscrollLastTs === null) autoscrollLastTs = ts;
+    const dtSec = Math.min(0.25, (ts - autoscrollLastTs) / 1000); // clamp to avoid a huge jump after a tab was backgrounded
+    autoscrollLastTs = ts;
+    autoscrollPos += autoscrollSpeed * AUTOSCROLL_PX_PER_LEVEL * dtSec;
+    songBodyWrap.scrollTop = autoscrollPos;
+    if(songBodyWrap.scrollTop + songBodyWrap.clientHeight >= songBodyWrap.scrollHeight - 1){
+      stopAutoscroll(); // reached the bottom - stop instead of idling
+      return;
+    }
+    autoscrollRAF = requestAnimationFrame(autoscrollStep);
+  }
+
+  function startAutoscroll(){
+    if(autoscrollActive) return;
+    // Force layout to settle (in case the song view/panel just opened this
+    // same tick) before trusting clientHeight/scrollHeight - otherwise a fast
+    // click right after opening a song can read stale (equal) values and
+    // wrongly conclude there's nothing to scroll.
+    void songBodyWrap.offsetHeight;
+    // Already at (or essentially at) the bottom - nothing to scroll to.
+    if(songBodyWrap.scrollTop + songBodyWrap.clientHeight >= songBodyWrap.scrollHeight - 1){
+      autoscrollPlayBtn.textContent = 'Nic do przewinięcia';
+      setTimeout(() => { if(!autoscrollActive) autoscrollPlayBtn.textContent = '▶ Start'; }, 1400);
+      return;
+    }
+    autoscrollActive = true;
+    autoscrollLastTs = null;
+    autoscrollPos = songBodyWrap.scrollTop; // resync in case the person manually scrolled since the last pause
+    autoscrollPlayBtn.textContent = '⏸ Stop';
+    autoscrollPlayBtn.classList.add('playing');
+    autoscrollRAF = requestAnimationFrame(autoscrollStep);
+  }
+  function stopAutoscroll(){
+    autoscrollActive = false;
+    if(autoscrollRAF) cancelAnimationFrame(autoscrollRAF);
+    autoscrollRAF = null;
+    autoscrollPlayBtn.textContent = '▶ Start';
+    autoscrollPlayBtn.classList.remove('playing');
+  }
+
+  autoscrollToggleBtn.addEventListener('click', () => {
+    autoscrollPanel.classList.toggle('open');
+    autoscrollToggleBtn.classList.toggle('active', autoscrollPanel.classList.contains('open'));
+  });
+  autoscrollCloseBtn.addEventListener('click', () => {
+    autoscrollPanel.classList.remove('open');
+    autoscrollToggleBtn.classList.remove('active');
+  });
+  autoscrollPlayBtn.addEventListener('click', () => {
+    if(autoscrollActive) stopAutoscroll(); else startAutoscroll();
+  });
+  autoscrollSpeedSlider.addEventListener('input', () => {
+    autoscrollSpeed = parseInt(autoscrollSpeedSlider.value, 10);
+    autoscrollSpeedValue.textContent = autoscrollSpeed;
+    try { localStorage.setItem(AUTOSCROLL_SPEED_KEY, String(autoscrollSpeed)); } catch(e){ /* not fatal */ }
+  });
+  // A deliberate manual scroll/swipe/wheel means the person wants to take
+  // over - pause the automatic scroll rather than fight their gesture.
+  ['touchstart','wheel'].forEach(evName => {
+    songBodyWrap.addEventListener(evName, () => { if(autoscrollActive) stopAutoscroll(); }, { passive:true });
+  });
+
 
   searchInput.addEventListener('input', () => {
     clearBtn.style.display = searchInput.value ? 'block' : 'none';
@@ -5414,6 +6373,227 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
     await customPrompt((copied ? 'Link skopiowany do schowka!' : 'Skopiuj poniższy link ręcznie:') + '\nKażdy, kto go otworzy, zobaczy tę setlistę bez możliwości edycji.', url);
   });
 
+  // ---------- Export setlist to a presentation PDF ----------
+  // One "slide" (landscape PDF page) per stanza/refrain, chords stripped,
+  // large auto-sized centered text on a dark background - meant to be
+  // shown full-screen to a room during a prayer meeting. jsPDF is loaded
+  // lazily (only when the export button is actually pressed) so it never
+  // costs anything on a normal page load.
+  function isChordLineForExport(line){
+    if(isChordLine(line)) return true;
+    const trimmed = line.trim();
+    if(!trimmed) return false;
+    const tokens = trimmed.split(/\s+/);
+    return tokens.every(t => t === '|' || t === '||' || CHORD_TOKEN.test(t));
+  }
+  // A line that only carries tempo/time-signature/capo info (e.g. "158 BPM 3/4",
+  // "Capo 4", "120 BPM Capo 1", "WERSJA Z CAPO 1") rather than actual lyrics -
+  // useful while playing, but meaningless (and distracting) as a projected slide.
+  function isMetaInfoLineForExport(line){
+    const trimmed = line.trim();
+    if(!trimmed) return false;
+    const cleaned = trimmed
+      .replace(/\d+\s*bpm/gi, '')
+      .replace(/wersja\s*z/gi, '')
+      .replace(/capo\s*\d+/gi, '')
+      .replace(/\b\d+\/\d+\b/g, '')
+      .replace(/[\s\-–,.:]/g, '');
+    return cleaned === '';
+  }
+  function extractPresentationBlocks(body){
+    const rawLines = body.split('\n');
+    const blocks = [];
+    let current = [];
+    let mainRefrainLines = null; // remembers the first full refrain seen, so
+    // later shorthand repeats ("Ref. Duszo ma..") can be expanded to the
+    // full text instead of showing a near-empty, confusing slide.
+
+    function flushLines(lines){
+      let nonEmpty = lines.filter(l => l.trim() !== '' && !isChordLineForExport(l));
+      if(!nonEmpty.length) return;
+      const isRef = isRefLine(nonEmpty[0]);
+      const stripped = nonEmpty[0].replace(/^\s*(Ref\.?|Refren|REFREN|Bridge|BRIDGE|Coda)\s*:?\s*/i, '');
+      let linesOut = stripped.trim() ? [stripped, ...nonEmpty.slice(1)] : nonEmpty.slice(1);
+      linesOut = linesOut.filter(l => !isChordLineForExport(l));
+      if(!linesOut.length) linesOut = nonEmpty;
+      if(isRef){
+        const textLen = linesOut.join(' ').length;
+        if(mainRefrainLines && textLen < 25){
+          linesOut = mainRefrainLines; // shorthand pointer - show the full refrain instead
+        } else if(!mainRefrainLines || textLen > mainRefrainLines.join(' ').length){
+          mainRefrainLines = linesOut;
+        }
+      }
+      blocks.push({ isRef, lines: linesOut });
+    }
+    function flush(){
+      // A "Ref./Refren" label sometimes appears glued to the end of a verse
+      // (no blank line before it in the source) - split it into its own
+      // slide instead of leaving it as a trailing fragment on the verse.
+      let splitIdx = -1;
+      for(let i=1;i<current.length;i++){
+        if(isRefLine(current[i])){ splitIdx = i; break; }
+      }
+      if(splitIdx > 0){
+        flushLines(current.slice(0, splitIdx));
+        flushLines(current.slice(splitIdx));
+      } else {
+        flushLines(current);
+      }
+      current = [];
+    }
+    rawLines.forEach(line => {
+      if(isChordLineForExport(line) || isMetaInfoLineForExport(line)) return; // drop chord-only and tempo/capo-only lines entirely
+      if(line.trim() === ''){
+        flush();
+      } else {
+        current.push(line);
+      }
+    });
+    flush();
+    return blocks;
+  }
+
+  // ---------- Unicode (Polish-diacritics-capable) font for the exported PDF ----------
+  // jsPDF's built-in fonts (helvetica/times/courier) only cover WinAnsi and
+  // silently drop/garble ą ć ę ł ń ó ś ź ż. We fetch a real Unicode TTF once,
+  // embed it into the PDF via addFileToVFS/addFont, and cache the base64 in
+  // localStorage so later exports (even offline) don't need the network.
+  const PDF_FONT_URL = 'https://cdn.jsdelivr.net/gh/googlefonts/roboto@main/src/hinted/Roboto-Regular.ttf';
+  const PDF_FONT_CACHE_KEY = 'adonaj_pdf_font_roboto_v1';
+  let cachedPdfFontBase64 = null;
+
+  function arrayBufferToBase64(buffer){
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const chunkSize = 0x8000; // avoid call-stack limits on String.fromCharCode.apply for large files
+    for(let i=0;i<bytes.length;i+=chunkSize){
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i+chunkSize));
+    }
+    return btoa(binary);
+  }
+
+  async function getPdfFontBase64(){
+    if(cachedPdfFontBase64) return cachedPdfFontBase64;
+    try {
+      const stored = localStorage.getItem(PDF_FONT_CACHE_KEY);
+      if(stored){ cachedPdfFontBase64 = stored; return stored; }
+    } catch(e){ /* localStorage unavailable - just fetch every time */ }
+    const res = await fetch(PDF_FONT_URL);
+    if(!res.ok) throw new Error('Nie udało się pobrać czcionki.');
+    const buf = await res.arrayBuffer();
+    const base64 = arrayBufferToBase64(buf);
+    cachedPdfFontBase64 = base64;
+    try { localStorage.setItem(PDF_FONT_CACHE_KEY, base64); } catch(e){ /* storage full/unavailable - not fatal */ }
+    return base64;
+  }
+
+  function registerPdfFont(doc, base64){
+    doc.addFileToVFS('Roboto-Regular.ttf', base64);
+    doc.addFont('Roboto-Regular.ttf', 'Roboto', 'normal');
+    doc.setFont('Roboto', 'normal');
+  }
+
+  // Fits `lines` into a box of maxWidth x maxHeight, shrinking the font
+  // down to a minimum readable size. If it still doesn't fit at that
+  // minimum, the text is split across as many extra slides as needed
+  // instead of overflowing/overlapping on a single one.
+  function layoutBlockText(doc, lines, maxWidth, maxHeight){
+    const minFontSize = 16;
+    let fontSize = 34;
+    let wrapped = [];
+    let lineHeight = fontSize*1.35;
+    for(; fontSize >= minFontSize; fontSize -= 2){
+      doc.setFont('Roboto','normal');
+      doc.setFontSize(fontSize);
+      wrapped = [];
+      lines.forEach(l => { wrapped.push(...doc.splitTextToSize(l, maxWidth)); });
+      lineHeight = fontSize*1.35;
+      if(wrapped.length*lineHeight <= maxHeight) return [{ fontSize, lineHeight, lines: wrapped }];
+    }
+    doc.setFont('Roboto','normal');
+    doc.setFontSize(minFontSize);
+    wrapped = [];
+    lines.forEach(l => { wrapped.push(...doc.splitTextToSize(l, maxWidth)); });
+    lineHeight = minFontSize*1.35;
+    const perPage = Math.max(1, Math.floor(maxHeight/lineHeight));
+    const pages = [];
+    for(let i=0;i<wrapped.length;i+=perPage){
+      pages.push({ fontSize: minFontSize, lineHeight, lines: wrapped.slice(i, i+perPage) });
+    }
+    return pages;
+  }
+
+  pldExportBtn.addEventListener('click', async () => {
+    const pl = getPlaylist(currentPlaylistId);
+    if(!pl || !pl.songs.length){
+      await customAlert('Ta setlista jest pusta - nie ma czego eksportować.');
+      return;
+    }
+    const originalText = pldExportBtn.textContent;
+    pldExportBtn.disabled = true;
+    pldExportBtn.textContent = '⏳';
+    try {
+      const [{ jsPDF }, fontBase64] = await Promise.all([
+        import('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/+esm'),
+        getPdfFontBase64()
+      ]);
+      const W = 960, H = 540;
+      const doc = new jsPDF({ orientation:'landscape', unit:'pt', format:[W,H] });
+      registerPdfFont(doc, fontBase64);
+      let firstPage = true;
+      let anySlide = false;
+
+      pl.songs.forEach(title => {
+        const idx = titleToIdx[title];
+        if(idx === undefined) return;
+        const song = SONGS[idx];
+        const blocks = extractPresentationBlocks(song.body);
+        blocks.forEach(block => {
+          const pages = layoutBlockText(doc, block.lines, W-140, H-140);
+          pages.forEach((page, pageIdx) => {
+            anySlide = true;
+            if(firstPage){ firstPage = false; } else { doc.addPage([W,H], 'landscape'); }
+
+            doc.setFillColor(15,23,42);
+            doc.rect(0,0,W,H,'F');
+
+            doc.setFont('Roboto','normal');
+            doc.setTextColor(148,163,184);
+            doc.setFontSize(15);
+            const titleLabel = song.title + (pages.length > 1 ? ' (' + (pageIdx+1) + '/' + pages.length + ')' : '');
+            doc.text(titleLabel, 30, 34, { maxWidth: W-160 });
+
+            if(block.isRef){
+              doc.setTextColor(250,204,21);
+              doc.setFontSize(13);
+              doc.text('REFREN', W-30, 34, { align:'right' });
+            }
+
+            doc.setFont('Roboto','normal');
+            doc.setTextColor(241,245,249);
+            doc.setFontSize(page.fontSize);
+            const startY = Math.max(90, (H - page.lines.length*page.lineHeight)/2 + page.fontSize);
+            page.lines.forEach((l,i) => {
+              doc.text(l, W/2, startY + i*page.lineHeight, { align:'center' });
+            });
+          });
+        });
+      });
+
+      if(!anySlide){
+        await customAlert('Nie znaleziono żadnego tekstu do wyeksportowania w tej setliście.');
+      } else {
+        doc.save((pl.name || 'setlista').replace(/[\\/:*?"<>|]/g,'_') + '.pdf');
+      }
+    } catch(e){
+      await customAlert('Nie udało się wygenerować prezentacji. Sprawdź połączenie z internetem i spróbuj ponownie.');
+    } finally {
+      pldExportBtn.disabled = false;
+      pldExportBtn.textContent = originalText;
+    }
+  });
+
   pldAddSongBtn.addEventListener('click', () => {
     openPicker();
   });
@@ -5564,13 +6744,15 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
     viewerView.style.display = 'flex';
     viewerTitle.textContent = 'Wczytywanie…';
     try {
+      const ok = await loadFirebase();
+      if(!ok) throw new Error('Firebase niedostępny');
       await ensureAuth();
-      const ref = doc(fbDb, 'syncs', code);
-      const snap = await getDoc(ref);
+      const ref = fbApi.doc(fbDb, 'syncs', code);
+      const snap = await fbApi.getDoc(ref);
       const data = snap.exists() ? snap.data() : null;
       const playlists = (data && data.playlists) || [];
       renderViewerSongs(playlists.find(p => p.id === playlistId));
-      onSnapshot(ref, (snap2) => {
+      fbApi.onSnapshot(ref, (snap2) => {
         const d2 = snap2.exists() ? snap2.data() : null;
         const pls2 = (d2 && d2.playlists) || [];
         renderViewerSongs(pls2.find(p => p.id === playlistId));
@@ -5782,6 +6964,235 @@ Nie, nie lękam się i śpiewam chwały pieśń.` }
       metPlayClick(ctx.currentTime + 0.02, false);
     }
   });
+
+  // ---------- Kalendarz wydarzeń/prób ----------
+  const CAL_EVENTS_KEY = 'adonaj_calendar_events_v1';
+  function getCalEvents(){
+    try { return JSON.parse(localStorage.getItem(CAL_EVENTS_KEY) || '[]'); } catch(e){ return []; }
+  }
+  function saveCalEvents(list){
+    try { localStorage.setItem(CAL_EVENTS_KEY, JSON.stringify(list)); } catch(e){ /* not fatal */ }
+  }
+
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function calDateKey(y, m, d){ return y + '-' + pad2(m+1) + '-' + pad2(d); } // m is 0-indexed
+  function calTodayKey(){
+    const t = new Date();
+    return calDateKey(t.getFullYear(), t.getMonth(), t.getDate());
+  }
+  const CAL_MONTH_SHORT = ['sty','lut','mar','kwi','maj','cze','lip','sie','wrz','paź','lis','gru'];
+  const CAL_MONTH_FULL = ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'];
+  const CAL_WEEKDAY_FULL = ['niedziela','poniedziałek','wtorek','środa','czwartek','piątek','sobota'];
+
+  const calOpenBtn = document.getElementById('calOpenBtn');
+  const calUpcomingList = document.getElementById('calUpcomingList');
+  const calendarView = document.getElementById('calendar-view');
+  const calBackBtn = document.getElementById('calBackBtn');
+  const calMonthTitle = document.getElementById('calMonthTitle');
+  const calPrevBtn = document.getElementById('calPrevBtn');
+  const calNextBtn = document.getElementById('calNextBtn');
+  const calTodayBtn = document.getElementById('calTodayBtn');
+  const calGrid = document.getElementById('calGrid');
+  const calDaySheetBackdrop = document.getElementById('calDaySheetBackdrop');
+  const calDaySheetTitle = document.getElementById('calDaySheetTitle');
+  const calDaySheetCloseBtn = document.getElementById('calDaySheetCloseBtn');
+  const calDayEventsList = document.getElementById('calDayEventsList');
+  const calTypeProbaBtn = document.getElementById('calTypeProbaBtn');
+  const calTypeWydarzenieBtn = document.getElementById('calTypeWydarzenieBtn');
+  const calEventName = document.getElementById('calEventName');
+  const calEventTime = document.getElementById('calEventTime');
+  const calEventPlace = document.getElementById('calEventPlace');
+  const calEventSaveBtn = document.getElementById('calEventSaveBtn');
+
+  let calViewYear, calViewMonth; // month is 0-indexed
+  let calSelectedDate = null; // 'YYYY-MM-DD' of the day sheet currently open
+  let calSelectedType = 'proba'; // 'proba' | 'wydarzenie'
+
+  function renderCalUpcoming(){
+    const today = calTodayKey();
+    const events = getCalEvents()
+      .filter(ev => ev.date >= today)
+      .sort((a,b) => (a.date + (a.time||'')).localeCompare(b.date + (b.time||'')))
+      .slice(0, 8);
+    if(!events.length){ calUpcomingList.innerHTML = ''; return; }
+    calUpcomingList.innerHTML = events.map(ev => {
+      const [y,m,d] = ev.date.split('-').map(n => parseInt(n,10));
+      const label = d + ' ' + CAL_MONTH_SHORT[m-1] + (ev.time ? ', ' + ev.time : '');
+      const placeStr = ev.place ? ' · ' + escapeHtml(ev.place) : '';
+      return '<button class="cal-pill ' + ev.type + '" data-date="' + ev.date + '">' +
+        '<b>' + escapeHtml(ev.name) + '</b>' + label + placeStr + '</button>';
+    }).join('');
+  }
+
+  function renderCalMonth(){
+    calMonthTitle.textContent = CAL_MONTH_FULL[calViewMonth] + ' ' + calViewYear;
+    const events = getCalEvents();
+    const eventsByDate = {};
+    events.forEach(ev => { (eventsByDate[ev.date] = eventsByDate[ev.date] || []).push(ev); });
+
+    const firstOfMonth = new Date(calViewYear, calViewMonth, 1);
+    // JS getDay(): 0=Sun..6=Sat. We display a Monday-first week, so shift accordingly.
+    const leadingBlanks = (firstOfMonth.getDay() + 6) % 7;
+    const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
+    const daysInPrevMonth = new Date(calViewYear, calViewMonth, 0).getDate();
+    const today = calTodayKey();
+
+    let html = '';
+    for(let i = leadingBlanks; i > 0; i--){
+      html += '<div class="cal-day other-month">' + (daysInPrevMonth - i + 1) + '</div>';
+    }
+    for(let d = 1; d <= daysInMonth; d++){
+      const key = calDateKey(calViewYear, calViewMonth, d);
+      const dayEvents = eventsByDate[key] || [];
+      const hasProba = dayEvents.some(e => e.type === 'proba');
+      const hasWydarzenie = dayEvents.some(e => e.type === 'wydarzenie');
+      let dots = '';
+      if(hasProba || hasWydarzenie){
+        dots = '<div class="cal-day-dots">' +
+          (hasProba ? '<span class="cal-dot cal-dot-proba"></span>' : '') +
+          (hasWydarzenie ? '<span class="cal-dot cal-dot-wydarzenie"></span>' : '') +
+          '</div>';
+      }
+      html += '<button class="cal-day' + (key === today ? ' today' : '') + '" data-date="' + key + '">' +
+        d + dots + '</button>';
+    }
+    const trailingBlanks = (7 - ((leadingBlanks + daysInMonth) % 7)) % 7;
+    for(let d = 1; d <= trailingBlanks; d++){
+      html += '<div class="cal-day other-month">' + d + '</div>';
+    }
+    calGrid.innerHTML = html;
+  }
+
+  function openCalendarMonth(year, month){
+    calViewYear = year;
+    calViewMonth = month;
+    renderCalMonth();
+    openOverlay(calendarView);
+  }
+
+  calOpenBtn.addEventListener('click', () => {
+    const t = new Date();
+    openCalendarMonth(t.getFullYear(), t.getMonth());
+  });
+  calBackBtn.addEventListener('click', goBack);
+  calPrevBtn.addEventListener('click', () => {
+    calViewMonth--;
+    if(calViewMonth < 0){ calViewMonth = 11; calViewYear--; }
+    renderCalMonth();
+  });
+  calNextBtn.addEventListener('click', () => {
+    calViewMonth++;
+    if(calViewMonth > 11){ calViewMonth = 0; calViewYear++; }
+    renderCalMonth();
+  });
+  calTodayBtn.addEventListener('click', () => {
+    const t = new Date();
+    calViewYear = t.getFullYear();
+    calViewMonth = t.getMonth();
+    renderCalMonth();
+  });
+  // Swipe left/right between months, in addition to the ‹ › buttons.
+  let calTouchStartX = null;
+  calGrid.addEventListener('touchstart', e => { calTouchStartX = e.touches[0].clientX; }, { passive:true });
+  calGrid.addEventListener('touchend', e => {
+    if(calTouchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - calTouchStartX;
+    calTouchStartX = null;
+    if(Math.abs(dx) < 50) return;
+    if(dx < 0) calNextBtn.click(); else calPrevBtn.click();
+  }, { passive:true });
+
+  function setCalType(type){
+    calSelectedType = type;
+    calTypeProbaBtn.classList.toggle('active', type === 'proba');
+    calTypeWydarzenieBtn.classList.toggle('active', type === 'wydarzenie');
+    calEventName.style.display = (type === 'wydarzenie') ? '' : 'none';
+  }
+  calTypeProbaBtn.addEventListener('click', () => setCalType('proba'));
+  calTypeWydarzenieBtn.addEventListener('click', () => setCalType('wydarzenie'));
+
+  function renderCalDayEventsList(){
+    const dayEvents = getCalEvents()
+      .filter(ev => ev.date === calSelectedDate)
+      .sort((a,b) => (a.time||'').localeCompare(b.time||''));
+    if(!dayEvents.length){ calDayEventsList.innerHTML = ''; return; }
+    calDayEventsList.innerHTML = dayEvents.map(ev => {
+      const details = [ev.time, ev.place].filter(Boolean).join(' · ');
+      return '<div class="cal-day-event-item" data-id="' + ev.id + '">' +
+        '<span class="cal-dot cal-dot-' + ev.type + '"></span>' +
+        '<div class="cal-ev-info"><b>' + escapeHtml(ev.name) + '</b>' +
+        (details ? '<span class="muted">' + escapeHtml(details) + '</span>' : '') + '</div>' +
+        '<button class="cal-del-btn" title="Usuń">🗑</button></div>';
+    }).join('');
+  }
+
+  function openDaySheet(dateKey){
+    calSelectedDate = dateKey;
+    const d = new Date(dateKey + 'T00:00:00');
+    calDaySheetTitle.textContent = d.getDate() + ' ' + CAL_MONTH_FULL[d.getMonth()].toLowerCase() + ' (' + CAL_WEEKDAY_FULL[d.getDay()] + ')';
+    renderCalDayEventsList();
+    setCalType('proba');
+    calEventName.value = '';
+    calEventTime.value = '';
+    calEventPlace.value = '';
+    openOverlay(calDaySheetBackdrop);
+  }
+
+  calGrid.addEventListener('click', e => {
+    const btn = e.target.closest('button.cal-day');
+    if(btn) openDaySheet(btn.dataset.date);
+  });
+  calUpcomingList.addEventListener('click', e => {
+    const btn = e.target.closest('button.cal-pill');
+    if(!btn) return;
+    const [y,m] = btn.dataset.date.split('-').map(n => parseInt(n,10));
+    openCalendarMonth(y, m - 1);
+    // Give the month view a tick to render before opening the day on top of it.
+    setTimeout(() => openDaySheet(btn.dataset.date), 0);
+  });
+
+  calDaySheetCloseBtn.addEventListener('click', goBack);
+  calDaySheetBackdrop.addEventListener('click', e => {
+    if(e.target === calDaySheetBackdrop) goBack();
+  });
+
+  calEventSaveBtn.addEventListener('click', () => {
+    const name = calSelectedType === 'wydarzenie'
+      ? (calEventName.value.trim() || 'Wydarzenie')
+      : 'Próba';
+    const ev = {
+      id: 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+      date: calSelectedDate,
+      type: calSelectedType,
+      name,
+      time: calEventTime.value || '',
+      place: calEventPlace.value.trim()
+    };
+    const list = getCalEvents();
+    list.push(ev);
+    saveCalEvents(list);
+    renderCalDayEventsList();
+    renderCalMonth();
+    renderCalUpcoming();
+    setCalType('proba');
+    calEventName.value = '';
+    calEventTime.value = '';
+    calEventPlace.value = '';
+  });
+
+  calDayEventsList.addEventListener('click', async e => {
+    const delBtn = e.target.closest('button.cal-del-btn');
+    if(!delBtn) return;
+    const id = delBtn.closest('.cal-day-event-item').dataset.id;
+    const ok = await customConfirm('Usunąć to wydarzenie?');
+    if(!ok) return;
+    saveCalEvents(getCalEvents().filter(ev => ev.id !== id));
+    renderCalDayEventsList();
+    renderCalMonth();
+    renderCalUpcoming();
+  });
+
+  renderCalUpcoming();
 
   const urlParams = new URLSearchParams(location.search);
   const shareCode = urlParams.get('view');
