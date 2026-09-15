@@ -1895,6 +1895,7 @@ b Des
 Jezus!
 As b
 Jezus!
+%%%SONG_END%%%
 %%%TITLE%%%Kolęda Drugiej Ewy - AdoNaj
 %%%BODY%%%
 	[Verse 1]
