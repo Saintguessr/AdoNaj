@@ -1898,7 +1898,7 @@
     bandpass.Q.value = cfg.q;
 
     const gainNode = ctx.createGain();
-    const peak = isAccent ? 1.0 : 0.8;
+    const peak = isAccent ? 1.5 : 1.2;
     gainNode.gain.setValueAtTime(peak, time);
     gainNode.gain.exponentialRampToValueAtTime(0.001, time + cfg.decay);
 
