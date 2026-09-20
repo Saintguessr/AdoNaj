@@ -2939,7 +2939,15 @@ Shaddai, 		Jireh, 				Adonai
 e
 Objawiaj się wśród nas
 
-[Verse 1]
+[Chorus]
+   C      D        h
+Yahweh, Rafa, Elohim
+   e       C       D
+Shaddai, Jireh, Adonai
+                   e
+Objawiaj się wśród nas
+
+[Verse]
     e                             D
 Twa chwała w miejscu tym unosi się
                               C
@@ -2952,6 +2960,7 @@ Twa chwała w miejscu tym unosi się
 niezwykła wiara wzbudzana jest
                            D
 Panie czyń, co tylko chcesz
+
 
 [Chorus]
    C      D        h
@@ -2969,7 +2978,13 @@ Shaddai, Jireh, Adonai
                    e
 Objawiaj się wśród nas
 
-[Verse 1]
+[Verse]
+    e                             D
+Twa chwała w miejscu tym unosi się
+                              C
+niezwykła wiara wzbudzana jest
+                           D
+Panie czyń, co tylko chcesz
     e                             D
 Twa chwała w miejscu tym unosi się
                               C
@@ -3003,18 +3018,7 @@ Kiedy wielbisz, wtedy On objawia się
 Kiedy wołasz, wtedy On objawia się
    C                            
 Kiedy szukasz, wtedy On objawia się
-e                             
-Kiedy wielbisz, wtedy On objawia się
-  D                            
-Kiedy wołasz, wtedy On objawia się
-   C                            
-Kiedy szukasz, wtedy On objawia się
-e                             
-Kiedy wielbisz, wtedy On objawia się
-  D                            
-Kiedy wołasz, wtedy On objawia się
-   C                            
-Kiedy szukasz, wtedy On objawia się
+
 e                             
 Kiedy wielbisz, wtedy On objawia się
   D                            
@@ -3022,13 +3026,21 @@ Kiedy wołasz, wtedy On objawia się
    C                            
 Kiedy szukasz, wtedy On objawia się
 
+e                             
+Kiedy wielbisz, wtedy On objawia się
+  D                            
+Kiedy wołasz, wtedy On objawia się
+   C                            
+Kiedy szukasz, wtedy On objawia się
+
+[Instrumental]
 [Bridge 2]
    e
 Yahweh - objaw się wśród nas
    D
 Jireh - objaw się wśród nas
   C
-Rapha - objaw się wśród nas
+Rafa - objaw się wśród nas
             C      D
 objaw się wśród nas
    e
@@ -3036,7 +3048,7 @@ Yahweh - objaw się wśród nas
    D
 Jireh - objaw się wśród nas
   C
-Rapha - objaw się wśród nas
+Rafa - objaw się wśród nas
             C      D
 objaw się wśród nas
    e
@@ -3044,18 +3056,11 @@ Yahweh - objaw się wśród nas
    D
 Jireh - objaw się wśród nas
   C
-Rapha - objaw się wśród nas
+Rafa - objaw się wśród nas
             C      D
 objaw się wśród nas
-      e
-Yahweh - objaw się wśród nas
-   D
-Jireh - objaw się wśród nas
-  C
-Rapha - objaw się wśród nas
-            C      D
-objaw się wśród nas
-
+     
+[Instrumental]
 [Chorus]
    C      D        h
 Yahweh, Rafa, Elohim
@@ -3080,13 +3085,7 @@ Shaddai, Jireh, Adonai
                    e
 Objawiaj się wśród nas
 
-[Chorus]
-   C      D        h
-Yahweh, Rafa, Elohim
-   e       C       D
-Shaddai, Jireh, Adonai
-                   e
-Objawiaj się wśród nas
+
 
 
 
