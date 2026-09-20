@@ -14,6 +14,7 @@ Adorujmy Najwyższego
 F G C G C
 Ducha Ognia Parakleta, Świętego
 
+a F G C
 Adorujmy Najwyższego
 F G C G F
 Boga Ojca Stworzyciela wszystkiego
@@ -48,6 +49,7 @@ Jezu Chryste – uwielbiamy Cię
 Duchu Święty uwielbiamy Cię!
 
 [chorus]
+a F G C
 Adorujmy Najwyższego
 F G C G F
 Boga Ojca Stworzyciela wszystkiego
@@ -1822,6 +1824,9 @@ By w Imię Jezus zgięło się każde kolano
           G
 I wszelki język oddał Jemu cześć!
 
+[Instrumental]
+2x a C G a
+
 a C
 Jezus!
 G a
@@ -1830,6 +1835,16 @@ a C
 Jezus!
 G a
 Jezus!
+
+
+
+
+
+
+
+
+
+
 
 
 b
@@ -1887,6 +1902,9 @@ By w Imię Jezus zgięło się każde kolano
           As
 I wszelki język oddał Jemu cześć!
 
+[Instrumental]
+2x b Des As b
+
 b Des
 Jezus!
 As b
@@ -1895,6 +1913,20 @@ b Des
 Jezus!
 As b
 Jezus!
+b Des
+Jezus!
+As b
+Jezus!
+
+
+
+
+
+
+
+
+
+
 %%%SONG_END%%%
 %%%TITLE%%%Kolęda Drugiej Ewy - AdoNaj
 %%%BODY%%%
