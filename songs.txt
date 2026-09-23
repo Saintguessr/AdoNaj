@@ -2054,7 +2054,7 @@ Panie Jezu, przyjdź  x4
 %%%SONG_END%%%
 %%%TITLE%%%Kenoza - AdoNaj
 %%%BODY%%%
-	120 BPM Capo 1
+	55 BPM Capo 1
 	a
 On
 C
