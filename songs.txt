@@ -5823,7 +5823,42 @@ Serca głód, serca głód   x2
 %%%SONG_END%%%
 %%%TITLE%%%Yeshua (Ukochany mój)
 %%%BODY%%%
-	64 BPM
+	64 BPM Capo 1
+
+[Zwrotka]
+ d  B 
+Ukochany mój, najpiękniejszy jest, 
+ F  C 
+Ze wszystkich, ze wszystkich.  x2
+
+[Refren]
+ B  Csus2  d  a 
+Yeshuuuuua aaaaaea aaaahaaa    x2
+
+[Zwrotka]
+ d  B 
+Ukochany mój, najpiękniejszy jest, 
+ F  C 
+Ze wszystkich, ze wszystkich.  x2
+
+[Refren]
+ B  Csus2  d  a 
+Yeshuuuuua aaaaaea aaaahaaa  x6
+
+[Bridge]
+d
+Twoja jest władza, 
+B
+Twoje królestwo, 
+F
+Twoja jest chwała, 
+C
+Na zawsze amen. 
+x4
+
+[Refren]
+ B  Csus2  d  a 
+Yeshuuuuua aaaaaea aaaahaaa  x4
 	[Zwrotka]
  e  C 
 Ukochany mój, najpiękniejszy jest, 
