@@ -1190,20 +1190,16 @@ Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
      Ufam Twej miłości |  Prowadź mnie 
 
 BRIDGE
-b                           As 
+b                 As    f             Es
 Tylko Ty sprawiasz, że budzę się każdego dnia
-f                         Es
+b                 As    f             Es
 Tylko Ty leczysz mój cały ból i cały strach 
-b                              As
+b                 As    f             Es
 Sięgasz tam gdzie nikt nie sięgnie
-                f
+b                 As    f             Es
 do najgłębszego dna 
-          Es
-Ja wciąż upadam 
-      b
-A Ty mnie kochasz 
-          As
-Ty mnie kochasz 
+b                 As    f             Es
+Ja wciąż upadam A Ty mnie kochasz Ty mnie kochasz 
 f                    Es
 Bardziej niż kocham ja
 
@@ -1255,20 +1251,14 @@ Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
      Ufam Twej miłości |  Prowadź mnie 
 
 BRIDGE
-a                                   G 
+a               G  e              D
 Tylko Ty sprawiasz, że budzę się każdego dnia
-e                            D
+a               G  e              D
 Tylko Ty leczysz mój cały ból i cały strach 
-a                                    G
-Sięgasz tam gdzie nikt nie sięgnie
-                     e
-do najgłębszego dna 
-          D
-Ja wciąż upadam 
-      a
-A Ty mnie kochasz 
-          G
-Ty mnie kochasz 
+a               G  e              D
+Sięgasz tam gdzie nikt nie sięgnie do najgłębszego dna 
+a               G  e              D
+Ja wciąż upadam A Ty mnie kochasz Ty mnie kochasz 
 e                     D
 Bardziej niż kocham ja
 
