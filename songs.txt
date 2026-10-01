@@ -1152,62 +1152,45 @@ Wierzę w imię Jezus
 
 %%%SONG_END%%%
 %%%TITLE%%%Daj mi serce swe - anMari
-%%%BODY%%%f            Es     As
+%%%BODY%%%
+f            Es     As  b 
 Wołam Cię Panie każdego dnia 
-  b              f        Es
+f            Es     As  b 
 Pomóż mi wstać, Naucz mnie trwać
-  f           Es           As
+f            Es     As  b 
 Ty Jesteś ciszą, której szukam 
-  b                   f         Es
+f            Es     Des 
 Moja zeschła dusza tylko w Tobie gra
 
-     b           As
-Ref. Daj mi serce swe
-     f         Es
-     Uzdrawiaj dusze, ciało
-     b            As
-     Naucz kochać mnie
-     f             Es
-     Ja wciąż kocham za mało
-     b           As
-     Kiedy ciemno jest
-     f            Es
-     Zapalam Twoje światło 
-     b           As
-     Ufam Twej miłości
-     f      Es
-     Prowadź mnie 
+     f            Es     As  b 
+Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
+     f            Es     As  b 
+     Naucz kochać mnie,|  Ja wciąż kocham za mało
+     f            Es     As  b 
+     Kiedy ciemno jest | Zapalam Twoje światło 
+    f            Es     Des 
+     Ufam Twej miłości |  Prowadź mnie 
 
-  f            Es     As
+  f            Es     As  b 
 Wołam Cię Panie każdego dnia
-  b                f       Es
+ f            Es     As  b 
 Ty mnie już w całości znasz
-  f                  Es        As
+ f            Es     As  b 
 Wiesz kiedy wstaję i idę spać
-  b
-Kiedy jest mi ciężko 
-f               Es
-kiedy płynie łza 
+f            Es     Des
+Kiedy jest mi ciężko, kiedy płynie łza 
 
-     b           As
-Ref. Daj mi serce swe
-     f         Es
-     Uzdrawiaj dusze, ciało
-     b            As
-     Naucz kochać mnie
-     f             Es
-     Ja wciąż kocham za mało
-     b           As
-     Kiedy ciemno jest
-     f            Es
-     Zapalam Twoje światło 
-     b           As
-     Ufam Twej miłości
-     f      Es
-     Prowadź mnie 
+   f            Es     As  b 
+Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
+     f            Es     As  b 
+     Naucz kochać mnie,|  Ja wciąż kocham za mało
+     f            Es     As  b 
+     Kiedy ciemno jest | Zapalam Twoje światło 
+    f            Es     Des 
+     Ufam Twej miłości |  Prowadź mnie 
 
 BRIDGE
-b                           As
+b                           As 
 Tylko Ty sprawiasz, że budzę się każdego dnia
 f                         Es
 Tylko Ty leczysz mój cały ból i cały strach 
@@ -1224,87 +1207,61 @@ Ty mnie kochasz
 f                    Es
 Bardziej niż kocham ja
 
-     b           As
-Ref. Daj mi serce swe
-     f         Es
-     Uzdrawiaj dusze, ciało
-     b            As
-     Naucz kochać mnie
-     f             Es
-     Ja wciąż kocham za mało
-     b           As
-     Kiedy ciemno jest
-     f            Es
-     Zapalam Twoje światło 
-     b           As
-     Ufam Twej miłości
-     f      Es   Des
-     Prowadź mnie
+ f            Es     As  b 
+Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
+     f            Es     As  b 
+     Naucz kochać mnie,|  Ja wciąż kocham za mało
+     f            Es     As  b 
+     Kiedy ciemno jest | Zapalam Twoje światło 
+    f            Es     Des 
+     Ufam Twej miłości |  Prowadź mnie 
 	 
 	 WERSJA Z CAPO 1
 
-	 e            D      G
+	 e           D      G   a 
 Wołam Cię Panie każdego dnia 
-  a              e        D
+e           D      G   a 
 Pomóż mi wstać, Naucz mnie trwać
-  e           D            G
+e           D      G   a 
 Ty Jesteś ciszą, której szukam 
-  a                   e         D
+e           D      C 
 Moja zeschła dusza tylko w Tobie gra
 
-     a           G
-Ref. Daj mi serce swe
-     e         D
-     Uzdrawiaj dusze, ciało
-     a            G
-     Naucz kochać mnie
-     e             D
-     Ja wciąż kocham za mało
-     a           G
-     Kiedy ciemno jest
-     e            D
-     Zapalam Twoje światło 
-     a           G
-     Ufam Twej miłości
-     e      D
-     Prowadź mnie 
+     e           D      G   a 
+Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
+     e           D      G   a 
+     Naucz kochać mnie,|  Ja wciąż kocham za mało
+     e           D      G   a 
+     Kiedy ciemno jest | Zapalam Twoje światło 
+    e           D      C 
+     Ufam Twej miłości |  Prowadź mnie 
 
-  e            D      G
+  e           D      G   a 
 Wołam Cię Panie każdego dnia
-  a                e       D
+  e           D      G   a 
 Ty mnie już w całości znasz
-  e                  D         G
+  e           D      G   a 
 Wiesz kiedy wstaję i idę spać
-  a
-Kiedy jest mi ciężko 
-e               D
-kiedy płynie łza 
+e           D      C
+Kiedy jest mi ciężko, kiedy płynie łza 
 
-     a           G
-Ref. Daj mi serce swe
-     e         D
-     Uzdrawiaj dusze, ciało
-     a            G
-     Naucz kochać mnie
-     e             D
-     Ja wciąż kocham za mało
-     a           G
-     Kiedy ciemno jest
-     e            D
-     Zapalam Twoje światło 
-     a           G
-     Ufam Twej miłości
-     e      D
-     Prowadź mnie 
+     e           D      G   a 
+Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
+     e           D      G   a 
+     Naucz kochać mnie,|  Ja wciąż kocham za mało
+     e           D      G   a 
+     Kiedy ciemno jest | Zapalam Twoje światło 
+    e           D      C 
+     Ufam Twej miłości |  Prowadź mnie 
 
 BRIDGE
-a                           G
+a                                   G 
 Tylko Ty sprawiasz, że budzę się każdego dnia
-e                         D
+e                            D
 Tylko Ty leczysz mój cały ból i cały strach 
-a                              G
+a                                    G
 Sięgasz tam gdzie nikt nie sięgnie
-                e
+                     e
 do najgłębszego dna 
           D
 Ja wciąż upadam 
@@ -1312,25 +1269,17 @@ Ja wciąż upadam
 A Ty mnie kochasz 
           G
 Ty mnie kochasz 
-e                    D
+e                     D
 Bardziej niż kocham ja
 
-     a           G
-Ref. Daj mi serce swe
-     e         D
-     Uzdrawiaj dusze, ciało
-     a            G
-     Naucz kochać mnie
-     e             D
-     Ja wciąż kocham za mało
-     a           G
-     Kiedy ciemno jest
-     e            D
-     Zapalam Twoje światło 
-     a           G
-     Ufam Twej miłości
-     e      D    C
-     Prowadź mnie
+     e           D      G   a 
+Ref. Daj mi serce swe |  Uzdrawiaj dusze, ciało
+     e           D      G   a 
+     Naucz kochać mnie,|  Ja wciąż kocham za mało
+     e           D      G   a 
+     Kiedy ciemno jest | Zapalam Twoje światło 
+    e           D      C 
+     Ufam Twej miłości |  Prowadź mnie
 	 
 
 
