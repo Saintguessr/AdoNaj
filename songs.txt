@@ -11,7 +11,7 @@ F G C G F
 Jego Syna Zbawiciela naszego
 a G C   F G C
 Adorujmy Najwyższego
-F G C G C
+F G C G a
 Ducha Ognia Parakleta, Świętego
 
 a F G C
@@ -24,7 +24,7 @@ F G C G F
 Jego Syna Zbawiciela naszego
 a G C   F G C
 Adorujmy Najwyższego
-F G C G C
+F G C G a
 Ducha Ognia Parakleta, Świętego
 
 [bridge]
@@ -59,7 +59,7 @@ F G C G F
 Jego Syna Zbawiciela naszego
 a G C   F G C
 Adorujmy Najwyższego
-F G C G C
+F G C G a
 Ducha Ognia Parakleta, Świętego
 
 
@@ -169,35 +169,63 @@ Aqua lateris Christi, lava me
 
 %%%SONG_END%%%
 %%%TITLE%%%Baranek i Lew – AdoNaj
-%%%BODY%%%cis      A
+%%%BODY%%%
+cis     
 Pan mój
-E         Hsus2
+A
 Jedyny Pan mój
-cis      A
+E
 Baranek i Lew
-E           Hsus2
-Zgładził mój grzech /2x
+Hsus2
+Zgładził mój grzech
+
+cis     
+Pan mój
+A
+Jedyny Pan mój
+E
+Baranek i Lew
+Hsus2
+Zgładził mój grzech
+
 
 Ref.
 cis             A                   E             Hsus2
 Jezu zwyciężasz, gdy przed jadem Węża jak Lew dziś osłaniasz mnie
 cis             A                 E           Hsus2
-Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł. /2x
+Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł.
+cis             A                   E             Hsus2
+Jezu zwyciężasz, gdy przed jadem Węża jak Lew dziś osłaniasz mnie
+cis             A                 E           Hsus2
+Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł.
 
-cis      A
+cis     
 Pan mój
-E         Hsus2
+A
 Jedyny Pan mój
-cis      A
+E
 Baranek i Lew
-E           Hsus2
-Zgładził mój grzech /2x
+Hsus2
+Zgładził mój grzech
+
+cis     
+Pan mój
+A
+Jedyny Pan mój
+E
+Baranek i Lew
+Hsus2
+Zgładził mój grzech
 
 Ref.
 cis             A                   E             Hsus2
 Jezu zwyciężasz, gdy przed jadem Węża jak Lew dziś osłaniasz mnie
 cis             A                 E           Hsus2
-Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł. /2x
+Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł.
+cis             A                   E             Hsus2
+Jezu zwyciężasz, gdy przed jadem Węża jak Lew dziś osłaniasz mnie
+cis             A                 E           Hsus2
+Będę Cię sławił za to, żeś mnie zbawił gdyś jako Baranek szedł.
 
 
 
