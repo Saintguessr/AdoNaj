@@ -5829,41 +5829,43 @@ x4
 [Refren]
  B  Csus2  d  a 
 Yeshuuuuua aaaaaea aaaahaaa  x4
+
+
 	[Zwrotka]
- e  C 
-Ukochany mój, najpiękniejszy jest, 
- G  D 
-Ze wszystkich, ze wszystkich.  x2
+es      Ces
+Ukochany mój, najpiękniejszy jest,
+Ges      Des
+Ze wszystkich, ze me wszystkich. x2
 
 [Refren]
- C  Dsus2  e  h 
-Yeshuuuuua aaaaaea aaaahaaa   x2
+Ces      Dessus2       es      b
+Yeshuuuuua aaaaaea aaaahaaa x2
 
 [Zwrotka]
- e  C 
-Ukochany mój, najpiękniejszy jest, 
- G  D 
-Ze wszystkich, ze wszystkich.  x2
+es      Ces
+Ukochany mój, najpiękniejszy jest,
+Ges      Des
+Ze wszystkich, ze wszystkich. x2
 
 [Refren]
- C  Dsus2  e  h 
-Yeshuuuuua aaaaaea aaaahaaa  x6
+Ces      Dessus2      es      b
 
+Yeshuuuuua aaaaaea aaaahaaa x6
 [Bridge]
-e
-Twoja jest władza, 
-C
-Twoje królestwo, 
-G
-Twoja jest chwała, 
-D
-Na zawsze amen. 
+es
+Twoja jest władza,
+Ces
+Twoje królestwo,
+Ges
+Twoja jest chwała,
+Des
+Na zawsze amen.
+
 x4
 
 [Refren]
- C  Dsus2  e  h 
-Yeshuuuuua aaaaaea aaaahaaa  x4
-
+Ces      Dessus2      es      b
+Yeshuuuuua aaaaaea aaaahaaa x4
 
 
 
