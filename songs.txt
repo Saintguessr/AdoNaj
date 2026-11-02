@@ -2929,38 +2929,9 @@ Shaddai, Jireh, Adonai
                    e
 Objawiaj się wśród nas
 
-[Verse]
-    e                             D
-Twa chwała w miejscu tym unosi się
-                              C
-niezwykła wiara wzbudzana jest
-                           D
-Panie czyń, co tylko chcesz
-    e                             D
-Twa chwała w miejscu tym unosi się
-                              C
-niezwykła wiara wzbudzana jest
-                           D
-Panie czyń, co tylko chcesz
 
-[Chorus]
-   C      D        h
-Yahweh, Rafa, Elohim
-   e       C       D
-Shaddai, Jireh, Adonai
-                   e
-Objawiaj się wśród nas
 
 [Instrumental]
-e D C C D
-
-[Chorus]
-   C      D        h
-Yahweh, Rafa, Elohim
-   e       C       D
-Shaddai, Jireh, Adonai
-                   e
-Objawiaj się wśród nas
 
 [Bridge 1]
 e                             
@@ -2984,7 +2955,7 @@ Kiedy wołasz, wtedy On objawia się
    C                            
 Kiedy szukasz, wtedy On objawia się
 
-[Instrumental]
+
 [Bridge 2]
    e
 Yahweh - objaw się wśród nas
@@ -3011,7 +2982,7 @@ Rafa - objaw się wśród nas
             C      D
 objaw się wśród nas
      
-[Instrumental]
+
 [Chorus]
    C      D        h
 Yahweh, Rafa, Elohim
